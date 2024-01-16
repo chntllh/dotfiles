@@ -1,6 +1,6 @@
 window#waybar {
   /* background: shade(alpha(@borders, 0.5), 0.5); */
-  background: rgba(127,127,127,0.5)
+  background: rgba(127, 127, 127, 0.5)
 }
 
 * {
@@ -21,8 +21,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
-#temperature
-{
+#temperature {
   font-family: 'SF Mono';
   /* margin: 0px 5px; */
   padding: 0px 8px;
@@ -30,24 +29,33 @@ window#waybar {
 
 @keyframes blink {
   to {
-      color: #dddddd;
+    color: #dddddd;
   }
 }
 
-#battery.2.warning:not(.charging) {
-  color: #ff5f15;
+
+#battery.cap.warning:not(.charging),
+#battery.cap.critical:not(.charging),
+#battery.cap.charging {
+  animation: none;
   animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-timing-function: ease;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-#battery.2.critical:not(.charging) {
-  color: #ff1515;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery.cap.warning:not(.charging) {
+  color: #ff5f15;
+  animation-duration: 1s;
 }
+
+#battery.cap.critical:not(.charging) {
+  color: #ff1515;
+  animation-duration: 1s;
+}
+
+#battery.cap.charging {
+  color: #5bc236;
+  animation-duration: 1s;
+}
+

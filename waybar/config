@@ -10,8 +10,8 @@
   "modules-right": [
     "group/hardware",
     "group/cpus",
-    "battery#1",
-    "battery#2",
+    "battery#rate",
+    "battery#cap",
     "clock"
   ],
   "hyprland/workspaces": {
@@ -112,17 +112,17 @@
     "tooltip": false,
     "on-click": "alacritty -e 'nmtui'"
   },
-  "battery#1": {
+  "battery#rate": {
     "interval": 1,
     "format": "{power:3.3}W {time:5}",
     "format-time": "{H}h{m}m",
     "tooltip": false
   },
-  "battery#2": {
-    "interval": 30,
+  "battery#cap": {
+    "interval": 1,
     "states": {
-      "warning": 60,
-      "critical": 46
+      "warning": 30,
+      "critical": 10
     },
     "format": "{icon} {capacity:2}%",
     "format-icons": [
