@@ -1,0 +1,27 @@
+# Packages
+hyprland
+swaync
+pipewire
+wireplumber
+polkit-kde-agent
+wofi
+brightnessctl
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+qt5-wayland
+qt6-wayland
+polkit-gnome
+waybar
+aylurs-gtk-shell
+eww-git
+waypaper-git
+wl-clipboard
+hyprpaper
+
+
+
+# Commands
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita
+
+
