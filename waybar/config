@@ -93,7 +93,8 @@
       ]
     },
     "scroll-step": 1,
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
   "bluetooth": {
     "format": " {status}",
@@ -110,7 +111,7 @@
     "format-ethernet": "{ipaddr}/{cidr} 󰈀",
     "format-disconnected": "󰖪 No Network",
     "tooltip": false,
-    "on-click": "alacritty -e 'nmtui'"
+    "on-click": "alacritty --class 'Script launcher' --title 'nmtui' -e 'nmtui'"
   },
   "battery#rate": {
     "interval": 1,
