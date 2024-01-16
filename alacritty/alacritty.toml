@@ -1,0 +1,65 @@
+import = ["/home/zaone/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+ipc_socket = true
+live_config_reload = true
+working_directory = "None"
+
+[cursor]
+blink_interval = 500
+blink_timeout = 0
+thickness = 0.2
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "Always"
+shape = "Underline"
+
+[debug]
+render_timer = false
+
+[font]
+builtin_box_drawing = true
+# draw_bold_text_with_bright_colors = true
+size = 12
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Regular"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 10000
+multiplier = 16
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+blur = false
+decorations = "full"
+decorations_theme_variant = "Dark"
+dynamic_title = true
+opacity = 0.6
+title = "Alacritty"
+
+[window.dimensions]
+columns = 80
+lines = 24
+
+[window.padding]
+x = 4
+y = 4
