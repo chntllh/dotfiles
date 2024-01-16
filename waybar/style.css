@@ -28,6 +28,26 @@ window#waybar {
   padding: 0px 8px;
 }
 
-/* #battery.charging {
-  color: #5bc236
-} */
+@keyframes blink {
+  to {
+      color: #dddddd;
+  }
+}
+
+#battery.2.warning:not(.charging) {
+  color: #ff5f15;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.2.critical:not(.charging) {
+  color: #ff1515;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

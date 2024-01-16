@@ -2,7 +2,6 @@
   "layer": "top",
   "position": "top",
   "modules-left": [
-    "custom/arch",
     "hyprland/window"
   ],
   "modules-center": [
@@ -11,7 +10,8 @@
   "modules-right": [
     "group/hardware",
     "group/cpus",
-    "battery",
+    "battery#1",
+    "battery#2",
     "clock"
   ],
   "hyprland/workspaces": {
@@ -112,13 +112,19 @@
     "tooltip": false,
     "on-click": "alacritty -e 'nmtui'"
   },
-  "battery": {
+  "battery#1": {
     "interval": 1,
+    "format": "{power:3.3}W {time:5}",
+    "format-time": "{H}h{m}m",
+    "tooltip": false
+  },
+  "battery#2": {
+    "interval": 30,
     "states": {
-      "warning": 30,
-      "critical": 10
+      "warning": 60,
+      "critical": 46
     },
-    "format": "{power:3.3}W {time:5} {icon} {capacity:2}%",
+    "format": "{icon} {capacity:2}%",
     "format-icons": [
       "󰁺",
       "󰁻",
@@ -132,9 +138,9 @@
       "󰁹"
     ],
     "format-time": "{H}h{m}m",
-    "format-charging": "<span color='#5bc236'>󰂄</span> {capacity}%",
-    "format-warning": "{power:3.3}W {time:5} <span color='#ff5f15'>{icon} {capacity:2}%</span>",
-    "format-critical": "{power:3.3}W {time:5} <span color='#ff1515'>{icon} {capacity:2}%</span>",
+    "format-charging": "󰂄 {capacity}%",
+    "format-warning": "{icon} {capacity:2}%",
+    "format-critical": "{icon} {capacity:2}%",
     "tooltip": false
   }
 }
