@@ -33,9 +33,8 @@ window#waybar {
   }
 }
 
-
-#battery.cap.warning:not(.charging),
-#battery.cap.critical:not(.charging),
+#battery.cap.warning,
+#battery.cap.critical,
 #battery.cap.charging {
   animation: none;
   animation-name: blink;
@@ -44,18 +43,17 @@ window#waybar {
   animation-direction: alternate;
 }
 
-#battery.cap.warning:not(.charging) {
+#battery.cap.warning {
   color: #ff5f15;
-  animation-duration: 1s;
+  animation-duration: 0.25s;
 }
 
-#battery.cap.critical:not(.charging) {
+#battery.cap.critical {
   color: #ff1515;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 #battery.cap.charging {
   color: #5bc236;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
-
