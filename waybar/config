@@ -14,6 +14,10 @@
     "battery#cap",
     "clock"
   ],
+  "hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  },
   "hyprland/workspaces": {
     "format": "{icon}",
     "tooltip": false,
@@ -24,10 +28,6 @@
     },
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1"
-  },
-  "hyprland/window": {
-    "max-length": 200,
-    "separate-outputs": true
   },
   "group/hardware": {
     "orientation": "horizontal",
@@ -42,27 +42,6 @@
       "pulseaudio",
       "bluetooth"
     ]
-  },
-  "group/cpus": {
-    "orientation": "horizontal",
-    "modules": [
-      "cpu",
-      "temperature"
-    ]
-  },
-  "cpu": {
-    "interval": 1,
-    "format": "{icon} {usage:3}% {avg_frequency:4}GHz",
-    "format-icons": [
-      ""
-    ]
-  },
-  "temperature": {
-    "thermal-zone": 0,
-    "format": "{temperatureC:2}°C"
-  },
-  "clock": {
-    "format": "{:%H:%M}"
   },
   "backlight": {
     "device": "intel_backlight",
@@ -113,6 +92,24 @@
     "tooltip": false,
     "on-click": "alacritty --class 'Script launcher' --title 'nmtui' -e 'nmtui'"
   },
+  "group/cpus": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "temperature"
+    ]
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{icon} {usage:3}% {avg_frequency:4}GHz",
+    "format-icons": [
+      ""
+    ]
+  },
+  "temperature": {
+    "thermal-zone": 0,
+    "format": "{temperatureC:2}°C"
+  },
   "battery#rate": {
     "interval": 1,
     "format": "{power:3.3}W {time:5}",
@@ -143,5 +140,8 @@
     "format-warning": "{icon} {capacity:2}%",
     "format-critical": "{icon} {capacity:2}%",
     "tooltip": false
+  },
+  "clock": {
+    "format": "{:%H:%M}"
   }
 }
