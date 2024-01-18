@@ -23,6 +23,23 @@ window#waybar {
   color: #dddddd;
 }
 
+#network,
+#backlight,
+#pulseaudio,
+#bluetooth,
+#cpu,
+#temperature,
+#battery,
+#clock {
+  font-family: 'SF Mono';
+  font-weight: 600;
+  padding: 0 4;
+}
+
+#clock {
+  padding: 0 12;
+}
+
 #window {
   font-family: 'SF Compact Display';
   font-weight: 600;
@@ -39,23 +56,6 @@ window#waybar {
   color: #fff;
   background: transparent;
 
-}
-
-#network,
-#backlight,
-#pulseaudio,
-#bluetooth,
-#cpu,
-#temperature,
-#battery,
-#clock {
-  font-family: 'SF Mono';
-  font-weight: 600;
-  padding: 0 4;
-}
-
-#clock {
-  padding: 0 12;
 }
 
 @keyframes blink {

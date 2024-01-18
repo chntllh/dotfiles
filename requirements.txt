@@ -18,6 +18,7 @@ waypaper-git
 wl-clipboard
 hyprpaper
 
+extra/xwaylandvideobridge
 
 
 # Commands
