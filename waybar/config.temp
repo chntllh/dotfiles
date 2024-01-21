@@ -1,0 +1,67 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "hyprland/window"
+  ],
+  "hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  },
+  
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "tooltip": false,
+    "all-outputs": true,
+    "format-icons": {
+      "active": "",
+      "default": ""
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+
+  "modules-right": [
+    "battery#rate",
+    "battery#cap",
+    "clock"
+  ],
+  "battery#rate": {
+    "interval": 1,
+    "format": "{power:3.3}W {time:5}",
+    "format-time": "{H}h{m}m",
+    "tooltip": false
+  },
+  "battery#cap": {
+    "interval": 1,
+    "states": {
+      "warning": 30,
+      "critical": 10
+    },
+    "format": "{icon} {capacity:2}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-time": "{H}h{m}m",
+    "format-charging": "󰂄 {capacity}%",
+    "format-warning": "{icon} {capacity:2}%",
+    "format-critical": "{icon} {capacity:2}%",
+    "tooltip": false,
+    "class": "active"
+  },
+  "clock": {
+    "format": "{:%H:%M}"
+  }
+}
