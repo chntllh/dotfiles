@@ -58,21 +58,32 @@ window#waybar {
 
 }
 
-@keyframes blink {
-  to {
-    color: #dddddd;
+@keyframes charging-animation {
+  50% {
+    color: #5bc236;
   }
 }
 
-#battery.cap.warning {
-  color: #ff5f15;
-}
-
-#battery.cap.critical {
-  color: #ff1515;
-}
-
 #battery.cap.charging {
-  color: #5bc236;
-  animation: 2s ease 0s infinite alternate blink;
+  animation: charging-animation 3s linear infinite;
+}
+
+@keyframes warning-animation {
+  50% {
+    color: #ff5f15;
+  }
+}
+
+#battery.cap.warning:not(.charging) {
+  animation: warning-animation 1.5s linear infinite;
+}
+
+@keyframes critical-animation {
+  50% {
+    color: #ff1515;
+  }
+}
+
+#battery.cap.critical:not(.charging) {
+  animation: critical-animation 0.5s linear infinite;
 }
