@@ -119,8 +119,13 @@
   "battery#cap": {
     "interval": 1,
     "states": {
+<<<<<<< HEAD
       "warning": 25,
       "critical": 10
+=======
+      "warning": 95,
+      "critical": 90
+>>>>>>> 14b2c5e37212142ce601909344597505e4be9505
     },
     "format": "{icon} {capacity:2}%",
     "format-icons": [
