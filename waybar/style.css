@@ -65,7 +65,7 @@ window#waybar {
 }
 
 #battery.cap.charging {
-  animation: charging-animation 3s linear infinite;
+  animation: charging-animation 3s steps(36) infinite;
 }
 
 @keyframes warning-animation {
@@ -75,7 +75,7 @@ window#waybar {
 }
 
 #battery.cap.warning:not(.charging) {
-  animation: warning-animation 1.5s linear infinite;
+  animation: warning-animation 1.5s steps(18) infinite;
 }
 
 @keyframes critical-animation {
@@ -85,5 +85,5 @@ window#waybar {
 }
 
 #battery.cap.critical:not(.charging) {
-  animation: critical-animation 0.5s linear infinite;
+  animation: critical-animation 0.5s steps(6) infinite;
 }
