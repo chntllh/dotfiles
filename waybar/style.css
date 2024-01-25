@@ -59,31 +59,31 @@ window#waybar {
 }
 
 @keyframes charging-animation {
-  50% {
+  to {
     color: #5bc236;
   }
 }
 
 #battery.cap.charging {
-  animation: charging-animation 3s steps(36) infinite;
+  animation: charging-animation 2s steps(24) infinite alternate;
 }
 
 @keyframes warning-animation {
-  50% {
+  to {
     color: #ff5f15;
   }
 }
 
 #battery.cap.warning:not(.charging) {
-  animation: warning-animation 1.5s steps(18) infinite;
+  animation: warning-animation 1s steps(12) infinite alternate;
 }
 
 @keyframes critical-animation {
-  50% {
+  to {
     color: #ff1515;
   }
 }
 
 #battery.cap.critical:not(.charging) {
-  animation: critical-animation 0.5s steps(6) infinite;
+  animation: critical-animation 0.5s steps(6) infinite alternate;
 }
