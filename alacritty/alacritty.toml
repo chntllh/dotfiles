@@ -1,4 +1,4 @@
-import = ["/home/zaone/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
 ipc_socket = true
 live_config_reload = true
 working_directory = "None"

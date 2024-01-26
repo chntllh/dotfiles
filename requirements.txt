@@ -20,9 +20,20 @@ hyprpaper
 
 extra/xwaylandvideobridge
 
+apple-fonts
+ttf-cascadia-code-nerd
+ttf-cascadia-mono-nerd
+
+zsh
+
+asusctl
+supergfxctl
+
+visual-studio-code-bin
+github-cli
+
 
 # Commands
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita
-
 
