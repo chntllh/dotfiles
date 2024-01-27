@@ -17,6 +17,7 @@ eww-git
 waypaper-git
 wl-clipboard
 hyprpaper
+blueman
 
 extra/xwaylandvideobridge
 
@@ -37,3 +38,5 @@ github-cli
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita
 
+# List pacman packages by install time
+awk '/\[ALPM\] installed/ { print $(NF-1) }' /var/log/pacman.log
