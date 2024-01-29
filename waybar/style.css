@@ -3,7 +3,7 @@ window#waybar {
 }
 
 * {
-  min-height: 10px;
+  min-height: 24px;
   font-size: 16px;
   border: none;
   background: transparent;
@@ -50,6 +50,8 @@ window#waybar {
   color: #ddd;
   background: transparent;
   border: none;
+  padding: 0px 2px;
+  margin: 0px 2px;
 }
 
 #workspaces button:hover {
