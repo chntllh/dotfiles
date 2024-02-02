@@ -6,4 +6,4 @@ sudo pacman -S "${packages[@]}"
 
 aur_packages=(swaync apple-fonts asusctl supergfxctl)
 
-paru -S "${aur_packages[@]}"
+yay -S "${aur_packages[@]}"
