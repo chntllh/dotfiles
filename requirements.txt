@@ -33,6 +33,8 @@ supergfxctl
 visual-studio-code-bin
 github-cli
 
+slurp
+grim
 
 # Commands
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark

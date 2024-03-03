@@ -89,3 +89,11 @@ window#waybar {
 #battery.cap.critical:not(.charging) {
   animation: critical-animation 0.5s steps(6) infinite alternate;
 }
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: white;
+}

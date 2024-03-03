@@ -84,11 +84,11 @@
     "on-click": "blueman-manager"
   },
   "network": {
-    "interface": "wlan0",
     "format": "{ifname}",
     "format-wifi": "  {essid}",
     "format-ethernet": "{ipaddr}/{cidr} 󰈀",
     "format-disconnected": "󰖪 No Network",
+    "interval": 5,
     "tooltip": false,
     "on-click": "alacritty --class 'Script launcher' --title 'nmtui' -e 'nmtui'"
   },
@@ -104,11 +104,13 @@
     "format": "{icon} {usage:3}% {avg_frequency:4}GHz",
     "format-icons": [
       ""
-    ]
+    ],
+    "tooltip": false
   },
   "temperature": {
     "thermal-zone": 0,
-    "format": "{temperatureC:2}°C"
+    "format": "{temperatureC:2}°C",
+    "tooltip": false
   },
   "battery#rate": {
     "interval": 1,
