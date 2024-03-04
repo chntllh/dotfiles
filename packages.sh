@@ -1,6 +1,6 @@
 #!/bin/bash
 
-packages=(alacritty zsh hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire wireplumber qt5-wayland qt6-wayland polkit-gnome waybar wofi brightnessctl wl-clipboard hyprpaper blueman xwaylandvideobridge ttf-cascadia-code-nerd ttf-cascadia-mono-nerd github-cli grim slurp)
+packages=(alacritty zsh hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire wireplumber qt5-wayland qt6-wayland polkit-gnome waybar wofi brightnessctl wl-clipboard hyprpaper blueman xwaylandvideobridge ttf-cascadia-code-nerd ttf-cascadia-mono-nerd github-cli grim slurp jq socat)
 
 sudo pacman -S "${packages[@]}"
 
