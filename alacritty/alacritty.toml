@@ -40,6 +40,11 @@ style = "Regular"
 [mouse]
 hide_when_typing = true
 
+[keyboard]
+bindings = [
+	{ key = "L", mods = "Control", chars="clear\n" },
+]
+
 [scrolling]
 history = 10000
 multiplier = 16
