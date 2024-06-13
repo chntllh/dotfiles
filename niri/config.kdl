@@ -72,6 +72,10 @@ layout {
     }
 }
 
+spawn-at-startup "hyprpaper"
+spawn-at-startup "swaync"
+spawn-at-startup "syncthing" "--no-browser"
+
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -100,10 +104,10 @@ binds {
     // Keyboard brightness
     XF86KbdBrightnessUp { spawn "brightnessctl" "-d" "asus::kbd_backlight" "set" "+1"; }
     XF86KbdBrightnessDown { spawn "brightnessctl" "-d" "asus::kbd_backlight" "set" "1-"; }
-
+    
     // Display brightness
-    XF86MonBrightnessUp cooldown-ms=500 { spawn "brightnessctl" "-e" "s" "+5%"; }
-    XF86MonBrightnessDown cooldown-ms=500 { spawn "brightnessctl" "-e" "s" "5%-"; }
+    XF86MonBrightnessUp { spawn "brightnessctl" "-e" "s" "+5%"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "-e" "s" "5%-"; }
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
