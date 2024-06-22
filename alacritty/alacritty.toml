@@ -19,7 +19,7 @@ render_timer = false
 [font]
 builtin_box_drawing = true
 # draw_bold_text_with_bright_colors = true
-size = 12
+size = 11
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font Mono"
@@ -41,9 +41,7 @@ style = "Regular"
 hide_when_typing = true
 
 [keyboard]
-bindings = [
-	{ key = "L", mods = "Control", chars="clear\n" },
-]
+bindings = []
 
 [scrolling]
 history = 10000
@@ -66,5 +64,8 @@ columns = 80
 lines = 24
 
 [window.padding]
-x = 4
-y = 4
+x = 8
+y = 8
+
+[selection]
+save_to_clipboard = true
