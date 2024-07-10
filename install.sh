@@ -7,3 +7,5 @@ ln -s ~/dotfiles/swaync ~/.config
 ln -s ~/dotfiles/eww ~/.config
 ln -s ~/dotfiles/scripts ~/.config
 ln -s ~/dotfiles/niri ~/.config
+ln -s ~/dotfiles/mimeapps.list ~/.config
+ln -s ~/dotfiles/code-flags.conf ~/.config
