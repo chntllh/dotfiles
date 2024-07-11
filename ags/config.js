@@ -1,88 +1,27 @@
-import { NotificationPopups } from "./widget/notificationPopups.js" 
-import { Clock } from "./widget/clock.js"
-import { BatteryLabel } from "./widget/battery.js"
-import { Workspaces, ClientTitle } from "./widget/hyprland.js"
-import { Media } from "./widget/mpris.js"
-import { Volume } from "./volume.js"
-import { PowerRate } from "./widget/powerrate.js"
-import { SysTray } from "./widget/systray.js"
+const main = "/tmp/ags/main.js"
+const entry = `${App.configDir}/main.ts`
 
-// Layout of Bar
-function Left() {
-    return Widget.Box({
-        spacing: 8,
-        children: [
-            ClientTitle(),
-        ],
-    })
+const v = {
+    ags: pkg.version?.split(".").map(Number) || [],
+    expect: [1, 8, 1],
 }
 
-function Center() {
-    return Widget.Box({
-        spacing: 8,
-        children: [
-            Workspaces(),
-            Media(),
-        ],
-    })
+try {
+    await Utils.execAsync([
+        "bun", "build", entry,
+        "--outfile", main,
+        "--external", "resource://*",
+        "--external", "gi://*",
+        "--external", "file://*",
+    ])
+    if (v.ags[1] < v.expect[1] || v.ags[2] < v.expect[2]) {
+        print(`my config needs at least v${v.expect.join(".")}, yours is v${v.ags.join(".")}`)
+        App.quit()
+    }
+    await import(`file://${main}`)
+} catch (error) {
+    console.error(error)
+    App.quit()
 }
-
-function Right() {
-    return Widget.Box({
-        hpack: "end",
-        spacing: 4,
-        children: [
-            Volume(),
-            BatteryLabel(),
-            PowerRate(),
-            SysTray(),
-            Clock(),
-        ],
-    })
-}
-
-// Main Bar
-function Bar(monitor = 0) {
-    return Widget.Window({
-        name: `bar-${monitor}`, // name has to be unique
-        class_name: "bar",
-        monitor,
-        anchor: ["top", "left", "right"],
-        exclusivity: "exclusive",
-        child: Widget.CenterBox({
-            start_widget: Left(),
-            center_widget: Center(),
-            end_widget: Right(),
-        }),
-    })
-}
-
-
-// main scss file
-const scss = `${App.configDir}/scss/style.scss`
-
-// target css file
-const css = `${App.configDir}/style.css`
-
-Utils.monitorFile(
-    // directory that contains the scss files
-    `${App.configDir}/style`,
-
-    // reload function
-    function() {
-        // compile, reset, apply
-        Utils.exec(`sassc ${scss} ${css}`)
-        App.resetCss()
-        App.applyCss(css)
-    },
-)
-
-App.config({
-    style: css,
-    windows: [
-        Bar(),
-        NotificationPopups(),
-    ],
-})
 
 export { }

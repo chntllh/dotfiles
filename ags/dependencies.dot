@@ -1,0 +1,39 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="true" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    subgraph "cluster_lib" {label="lib" "lib/init" [label=<init> tooltip="init" ] }
+    subgraph "cluster_lib" {label="lib" "lib/session" [label=<session> tooltip="session" ] }
+    subgraph "cluster_lib" {label="lib" "lib/utils" [label=<utils> tooltip="utils" ] }
+    "main.ts" [label=<main.ts> tooltip="main.ts" URL="main.ts" fillcolor="#ddfeff"]
+    "main.ts" -> "lib/init"
+    "main.ts" -> "lib/session"
+    "main.ts" -> "lib/utils"
+    "main.ts" -> "options"
+    "main.ts" -> "style/style"
+    "main.ts" -> "widget/applauncher/Applauncher"
+    "main.ts" -> "widget/bar/Bar"
+    "main.ts" -> "widget/bar/ScreenCorners"
+    "main.ts" -> "widget/datemenu/DateMenu"
+    "main.ts" -> "widget/dock/FloatingDock"
+    "main.ts" -> "widget/dock/ToolBoxDock"
+    "main.ts" -> "widget/notifications/NotificationPopups"
+    "main.ts" -> "widget/powermenu/PowerMenu"
+    "main.ts" -> "widget/powermenu/Verification"
+    "main.ts" -> "widget/quicksettings/QuickSettings"
+    "main.ts" -> "widget/settings/SettingsDialog"
+    "options" [label=<options> tooltip="options" ]
+    subgraph "cluster_style" {label="style" "style/style" [label=<style> tooltip="style" ] }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/applauncher" {label="applauncher" "widget/applauncher/Applauncher" [label=<Applauncher> tooltip="Applauncher" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/bar" {label="bar" "widget/bar/Bar" [label=<Bar> tooltip="Bar" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/bar" {label="bar" "widget/bar/ScreenCorners" [label=<ScreenCorners> tooltip="ScreenCorners" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/datemenu" {label="datemenu" "widget/datemenu/DateMenu" [label=<DateMenu> tooltip="DateMenu" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/dock" {label="dock" "widget/dock/FloatingDock" [label=<FloatingDock> tooltip="FloatingDock" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/dock" {label="dock" "widget/dock/ToolBoxDock" [label=<ToolBoxDock> tooltip="ToolBoxDock" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/notifications" {label="notifications" "widget/notifications/NotificationPopups" [label=<NotificationPopups> tooltip="NotificationPopups" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/powermenu" {label="powermenu" "widget/powermenu/PowerMenu" [label=<PowerMenu> tooltip="PowerMenu" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/powermenu" {label="powermenu" "widget/powermenu/Verification" [label=<Verification> tooltip="Verification" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/quicksettings" {label="quicksettings" "widget/quicksettings/QuickSettings" [label=<QuickSettings> tooltip="QuickSettings" ] } }
+    subgraph "cluster_widget" {label="widget" subgraph "cluster_widget/settings" {label="settings" "widget/settings/SettingsDialog" [label=<SettingsDialog> tooltip="SettingsDialog" ] } }
+}
