@@ -17,7 +17,7 @@ input {
     }
 
     mouse {
-        natural-scroll
+        //natural-scroll
         accel-speed 0.2
         accel-profile "flat"
     }
@@ -31,7 +31,16 @@ output "eDP-1" {
     mode "1920x1080@120.030"
     scale 1.0
     transform "normal"
+    variable-refresh-rate on-demand=true
+    position x=2560 y=1080
+    background-color "#000"
+}
+
+output "HDMI-A-1" {
+    mode "2560x1440@119.998"
+    scale 1.0
     position x=0 y=0
+    background-color "#000"
 }
 
 layout {
@@ -40,8 +49,9 @@ layout {
     center-focused-column "never"
 
     preset-column-widths {
-        proportion 0.4
-        proportion 0.7
+        proportion 0.33
+        proportion 0.5
+        proportion 0.6
         proportion 1.0
     }
 
@@ -74,7 +84,7 @@ layout {
 
 spawn-at-startup "hyprpaper"
 spawn-at-startup "swaync"
-spawn-at-startup "syncthing" "--no-browser"
+spawn-at-startup "waybar"
 
 prefer-no-csd
 
@@ -104,7 +114,7 @@ binds {
     // Keyboard brightness
     XF86KbdBrightnessUp { spawn "brightnessctl" "-d" "asus::kbd_backlight" "set" "+1"; }
     XF86KbdBrightnessDown { spawn "brightnessctl" "-d" "asus::kbd_backlight" "set" "1-"; }
-    
+
     // Display brightness
     XF86MonBrightnessUp { spawn "brightnessctl" "-e" "s" "+5%"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "-e" "s" "5%-"; }
@@ -312,4 +322,8 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+}
+
+environment {
+    DISPLAY ":0"
 }

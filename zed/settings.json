@@ -1,0 +1,127 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "base_keymap": "VSCode",
+    "ui_font_size": 14,
+    "buffer_font_size": 11.0,
+    "buffer_font_family": "CaskaydiaCove Nerd Font",
+    "buffer_font_weight": 400,
+    "buffer_font_features": {
+        "calt": true
+    },
+    "buffer_line_height": "standard",
+    "centered_layout": {
+        "left_padding": 0.2,
+        "right_padding": 0.2
+    },
+    "theme": {
+        "mode": "system",
+        "light": "One Light",
+        "dark": "One Dark"
+    },
+    "relative_line_numbers": true,
+    "tab_bar": {
+        "show": true
+    },
+    "tab_size": 4,
+    "scrollbar": {
+        "git_diff": true,
+        "show": "always"
+    },
+    "lsp": {
+        "pyright": {
+            "settings": {
+                "python.analysis": {
+                    "diagnosticMode": "workspace",
+                    "typeCheckingMode": "strict"
+                },
+                "python": {
+                    "pythonPath": "/home/aqua/anaconda3/envs/cuda/bin/python"
+                }
+            }
+        },
+        "ruff": {
+            "initialization_options": {
+                "settings": {
+                    "lineLength": 80,
+                    "lint": {
+                        "extendSelect": ["I"]
+                    }
+                }
+            }
+        }
+    },
+    "languages": {
+        "JavaScript": {
+            "inlay_hints": {
+                "enabled": true,
+                "scroll_debounce_ms": 50,
+                "edit_debounce_ms": 700
+            }
+        },
+        "Python": {
+            "language_servers": ["ruff"],
+            "format_on_save": "on",
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "ruff"
+                    }
+                },
+                {
+                    "code_actions": {
+                        // "source.fixAll.ruff": true,
+                        "source.organizeImports.ruff": true
+                    }
+                }
+            ]
+        }
+    },
+    "jupyter": {
+        "kernel_selections": {
+            "python": "cuda",
+            "typescript": "deno",
+            "javascript": "deno"
+        }
+    },
+    "inlay_hints": {
+        "enabled": true
+    },
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    "project_panel": {
+        "button": true,
+        "dock": "left",
+        "git_status": true
+    },
+    "outline_panel": {
+        "dock": "left"
+    },
+    "assistant": {
+        "button": false,
+        "enabled": false,
+        "version": "2",
+        "provider": null
+    },
+    "features": {
+        "inline_completion_provider": "none",
+        "copilot": false
+    },
+    "chat_panel": {
+        "button": "never"
+    },
+    "notification_panel": {
+        "button": false
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    }
+}
