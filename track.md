@@ -125,6 +125,12 @@ curl -fsSL https://bun.sh/install | bash
 
 ---
 
-## For CUDA
+# GTK 
 
----
+```bash
+# For dark-mode in gtk4
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
+# Set cursor
+gsettings set org.gnome.desktop.interface cursor-theme '<cursor-theme>'
+```
