@@ -4,6 +4,7 @@ import AstalBattery from "gi://AstalBattery?version=0.1";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import AstalWp from "gi://AstalWp?version=0.1";
 import Gtk from "gi://Gtk?version=4.0";
+import { controlCenterPage } from "../../control-center/ControlCenter";
 
 const network = AstalNetwork.get_default();
 const speaker: AstalWp.Endpoint | undefined =
@@ -169,8 +170,7 @@ export const StatusWidget = () => {
     <button
       cssClasses={bind(batteryStatus).as((val) => ["button-widget", val])}
       onButtonPressed={() => {
-        // App.toggle_window("waste-gate");
-        // App.toggle_window("quick-settings");
+        controlCenterPage.set("main");
         App.toggle_window("control-center");
       }}
     >

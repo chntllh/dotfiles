@@ -19,7 +19,7 @@ export const ControlCenter = () => {
       name="control-center"
       layer={Astal.Layer.OVERLAY}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      // keymode={Astal.Keymode.EXCLUSIVE}
+      keymode={Astal.Keymode.EXCLUSIVE}
       onKeyPressed={(self, keyval, keycode) => {
         if (keyval && keycode == 9) {
           if (controlCenterPage.get() == "main") {
