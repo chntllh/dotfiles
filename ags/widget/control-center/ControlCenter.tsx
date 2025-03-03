@@ -13,13 +13,12 @@ export const ControlCenter = () => {
   return (
     <window
       valign={Gtk.Align.START}
-      // visible //Only set when developing the control-center
       margin={8}
       namespace={"control-center"}
       name="control-center"
-      layer={Astal.Layer.OVERLAY}
+      layer={Astal.Layer.TOP}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      keymode={Astal.Keymode.EXCLUSIVE}
+      keymode={Astal.Keymode.EXCLUSIVE} // Comment out when developing the control-center
       onKeyPressed={(self, keyval, keycode) => {
         if (keyval && keycode == 9) {
           if (controlCenterPage.get() == "main") {

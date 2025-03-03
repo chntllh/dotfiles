@@ -17,9 +17,10 @@ App.start({
       .get_monitors()
       .map((monitor) => widgetMap.set(monitor.id, widgets(monitor.id)));
 
+    ControlCenter();
     setTimeout(() => {
-      ControlCenter();
-    });
+      // App.toggle_window("control-center");
+    }, 100);
 
     // hypr.connect('monitor-added', (_, monitor) => widgetMap.set(monitor.id, widgets(monitor.id)))
 

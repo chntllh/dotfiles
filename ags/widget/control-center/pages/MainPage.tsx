@@ -6,6 +6,7 @@ import { MicrophoneButton } from "../modules/MicrophoneButton";
 import { BrightnessSlider } from "../modules/BrightnessSlider";
 import { BrightnessSliderExternal } from "../modules/BrightnessSliderExternal";
 import { VolumeSlider } from "../modules/VolumeSlider";
+import { WiredButton } from "../modules/WiredButton";
 
 export const MainPage = () => {
   const flowBox = new Gtk.FlowBox({
@@ -17,9 +18,10 @@ export const MainPage = () => {
   });
 
   flowBox.append(WifiButton());
-  flowBox.append(BluetoothButton());
+  flowBox.append(WiredButton());
   flowBox.append(PowerProfileButton());
   flowBox.append(MicrophoneButton());
+  flowBox.append(BluetoothButton());
 
   return (
     <box name="main" vertical spacing={0}>

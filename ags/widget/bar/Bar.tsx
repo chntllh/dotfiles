@@ -11,7 +11,7 @@ export const Bar = (monitor: number) => (
     namespace={"top-bar"}
     monitor={monitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
-    layer={Astal.Layer.OVERLAY}
+    layer={Astal.Layer.TOP}
     anchor={
       Astal.WindowAnchor.TOP |
       Astal.WindowAnchor.LEFT |
