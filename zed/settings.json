@@ -36,6 +36,12 @@
     "show": "always"
   },
   "lsp": {
+    "clangd": {
+      "binary": {
+        "path": "/usr/bin/clangd",
+        "arguments": []
+      }
+    },
     "pyright": {
       "settings": {
         "python.analysis": {

@@ -36,16 +36,16 @@ style = "Regular"
 [mouse]
 hide_when_typing = true
 
-[keyboard]
-bindings = []
+# [keyboard]
+# bindings = []
 
 [scrolling]
 history = 10000
 multiplier = 16
 
-[terminal.shell]
-args = ["--login"]
-program = "/bin/zsh"
+# [terminal.shell]
+# args = ["--login"]
+# program = "/bin/zsh"
 
 [window]
 blur = false
