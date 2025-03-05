@@ -99,6 +99,20 @@ top-bar {
       }
     }
   }
+
+  .tray-box {
+    @include rounded-full;
+    line-height: 1rem;
+    margin: 0 0.3rem;
+    background: #56b6c2;
+    padding: 0 0.5rem;
+    min-height: 1rem;
+    min-width: 1rem;
+
+    button {
+      all: unset;
+    }
+  }
 }
 
 control-center {
