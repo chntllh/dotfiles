@@ -1,4 +1,5 @@
 import { execAsync, readFileAsync, Variable } from "astal";
+import { Gtk } from "astal/gtk4";
 
 // CPU Frequency
 const getCpuFrequency: (cpu: number) => Promise<number | null> = async (
@@ -186,9 +187,9 @@ const cpuStats: Variable<CpuStat> = Variable<CpuStat>(cpuStatInit);
 
 cpuStats.poll(2000, async () => await getCpuStats());
 
-const cpuStatsVisible = Variable<boolean>(true);
+const cpuStatsVisible: Variable<boolean> = Variable<boolean>(true);
 
-const toggleCpuStats = () => {
+const toggleCpuStats: () => void = (): void => {
   cpuStatsVisible.set(!cpuStatsVisible.get());
   if (cpuStatsVisible.get()) {
     cpuStats.startPoll();
@@ -234,7 +235,7 @@ const nvidiaStatInit: NvidiaStat = {
 const getNvidiaStats: () => Promise<NvidiaStat> =
   async (): Promise<NvidiaStat> => {
     try {
-      const query = [
+      const query: string = [
         "temperature.gpu",
         "clocks.current.graphics",
         "clocks.current.memory",
@@ -243,7 +244,7 @@ const getNvidiaStats: () => Promise<NvidiaStat> =
         "power.draw",
       ].join(",");
 
-      const output = await execAsync(
+      const output: string = await execAsync(
         `nvidia-smi --query-gpu=${query} --format=csv,noheader,nounits`,
       );
 
@@ -271,7 +272,7 @@ if (nvidiaGpuPresent) {
   nvidiaStats.poll(2000, async () => await getNvidiaStats());
 }
 
-const nvidiaStatsVisible = Variable<boolean>(true);
+const nvidiaStatsVisible: Variable<boolean> = Variable<boolean>(true);
 
 const toggleNvidiaStats = () => {
   nvidiaStatsVisible.set(!nvidiaStatsVisible.get());
@@ -282,7 +283,7 @@ const toggleNvidiaStats = () => {
   }
 };
 
-export const StatsWidget = () => (
+export const StatsWidget: () => Gtk.Widget = () => (
   <>
     <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
       <box cssClasses={["stats-box"]} visible={cpuStatsVisible()}>

@@ -9,10 +9,10 @@ export const profileNames: Record<string, string> = {
   performance: "Supra",
 };
 
-export const PowerProfilePage = () => {
+export const PowerProfilePage: () => Gtk.Widget = () => {
   const power = AstalPowerProfiles.get_default();
 
-  const profiles = power.get_profiles();
+  const profiles: AstalPowerProfiles.Profile[] = power.get_profiles();
 
   return (
     <box name="power-profile" vertical spacing={8}>

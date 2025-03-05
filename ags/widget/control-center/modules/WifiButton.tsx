@@ -3,7 +3,7 @@ import { Gtk } from "astal/gtk4";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import { controlCenterPage } from "../ControlCenter";
 
-export const WifiButton = () => {
+export const WifiButton: () => Gtk.Widget = () => {
   const wifi = AstalNetwork.get_default().wifi;
 
   const toggleWifi = () => {

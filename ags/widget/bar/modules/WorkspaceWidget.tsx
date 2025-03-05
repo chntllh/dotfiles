@@ -1,11 +1,16 @@
 import { bind, Variable } from "astal";
+import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
 function range(max: number): number[] {
   return Array.from({ length: max + 1 }, (_, i) => i);
 }
 
-const WorkspaceButton = ({ ws }: { ws: AstalHyprland.Workspace }) => {
+const WorkspaceButton: ({
+  ws,
+}: {
+  ws: AstalHyprland.Workspace;
+}) => Gtk.Widget = ({ ws }: { ws: AstalHyprland.Workspace }) => {
   const hyprland = AstalHyprland.get_default();
 
   const classNames = Variable.derive(
@@ -29,7 +34,7 @@ const WorkspaceButton = ({ ws }: { ws: AstalHyprland.Workspace }) => {
   );
 };
 
-export const WorkspaceWidget = () => {
+export const WorkspaceWidget: () => Gtk.Widget = () => {
   return (
     <box cssClasses={["workspaces-box"]}>
       {range(9).map((i) => (

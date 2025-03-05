@@ -1,14 +1,15 @@
 import { GLib, Variable } from "astal";
+import { Gtk } from "astal/gtk4";
 
-const curr = GLib.DateTime.new_now_local();
-const date = curr.format("%d/%m")!;
-const day = curr.format("%a")!;
-const time = Variable<string>("").poll(
+const curr: GLib.DateTime = GLib.DateTime.new_now_local();
+const date: string = curr.format("%d/%m")!;
+const day: string = curr.format("%a")!;
+const time: Variable<string> = Variable<string>("").poll(
   1000,
   () => GLib.DateTime.new_now_local().format("%H:%M:%S")!,
 );
 
-export const TimeWidget = () => (
+export const TimeWidget: () => Gtk.Widget = () => (
   <button cssClasses={["button-widget"]}>
     <box cssClasses={["time-box"]}>
       <label label={day} />

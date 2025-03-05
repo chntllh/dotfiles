@@ -1,4 +1,4 @@
-import { bind, execAsync, Variable } from "astal";
+import { bind, Variable } from "astal";
 import { App } from "astal/gtk4";
 import AstalBattery from "gi://AstalBattery?version=0.1";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
@@ -6,12 +6,12 @@ import AstalWp from "gi://AstalWp?version=0.1";
 import Gtk from "gi://Gtk?version=4.0";
 import { controlCenterPage } from "../../control-center/ControlCenter";
 
-const network = AstalNetwork.get_default();
+const network: AstalNetwork.Network = AstalNetwork.get_default();
+const battery: AstalBattery.Device = AstalBattery.get_default();
 const speaker: AstalWp.Endpoint | undefined =
   AstalWp.get_default()?.audio.defaultSpeaker;
 const microphone: AstalWp.Endpoint | undefined =
   AstalWp.get_default()?.audio.defaultMicrophone;
-const battery = AstalBattery.get_default();
 
 const NetworkIcon: () => Gtk.Widget = () => {
   const handleIcon: Variable<string> = Variable.derive(
@@ -149,7 +149,11 @@ const BatteryIcon: () => Gtk.Widget = () => {
   );
 };
 
-export const StatusWidget = () => {
+export const StatusWidget: ({ monitor }: { monitor: number }) => Gtk.Widget = ({
+  monitor,
+}: {
+  monitor: number;
+}) => {
   const batteryStatus: Variable<string> = Variable.derive(
     [bind(battery, "percentage"), bind(battery, "state")],
     (percentage, state) => {
@@ -171,7 +175,7 @@ export const StatusWidget = () => {
       cssClasses={bind(batteryStatus).as((val) => ["button-widget", val])}
       onButtonPressed={() => {
         controlCenterPage.set("main");
-        App.toggle_window("control-center");
+        App.toggle_window("control-center-" + monitor);
       }}
     >
       <box cssClasses={["status-box"]}>

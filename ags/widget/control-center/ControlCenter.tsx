@@ -9,13 +9,15 @@ export const controlCenterPage = Variable<
   "main" | "wifi" | "power-profile" | "bluetooth"
 >("main");
 
-export const ControlCenter = () => {
+export const ControlCenter = (monitor: number) => {
   return (
     <window
+      name={"control-center-" + monitor}
+      cssName="control-center"
+      namespace={"control-center"}
+      monitor={monitor}
       valign={Gtk.Align.START}
       margin={8}
-      namespace={"control-center"}
-      name="control-center"
       layer={Astal.Layer.TOP}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       keymode={Astal.Keymode.EXCLUSIVE} // Comment out when developing the control-center

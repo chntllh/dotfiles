@@ -5,9 +5,10 @@ import { StatusWidget } from "./modules/StatusWidget";
 import { StatsWidget } from "./modules/StatsWidget";
 import { WorkspaceWidget } from "./modules/WorkspaceWidget";
 
-export const Bar = (monitor: number) => (
+export const Bar: (monitor: number) => Gtk.Widget = (monitor: number) => (
   <window
-    name="top-bar"
+    name={"top-bar-" + monitor}
+    cssName="top-bar"
     namespace={"top-bar"}
     monitor={monitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
@@ -29,7 +30,7 @@ export const Bar = (monitor: number) => (
         <WorkspaceWidget />
       </box>
       <box valign={Gtk.Align.CENTER}>
-        <StatusWidget />
+        <StatusWidget monitor={monitor} />
       </box>
     </CenterBox>
   </window>

@@ -2,7 +2,7 @@ import { bind, execAsync } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 
-export const WiredButton = () => {
+export const WiredButton: () => Gtk.Widget = () => {
   const wired = AstalNetwork.get_default().wired;
 
   const toggleWired = () => {

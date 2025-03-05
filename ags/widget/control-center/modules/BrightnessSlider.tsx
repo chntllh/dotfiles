@@ -1,15 +1,26 @@
 import { bind, execAsync, Variable } from "astal";
+import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-export const BrightnessSlider = () => {
+export const BrightnessSlider: () => Gtk.Widget = () => {
   const hyprland = AstalHyprland.get_default();
+  const brightness: Variable<number> = Variable<number>(0);
 
-  const get = (val: string) => Number(execAsync(["brightnessctl", val]));
+  const queryBrightness: (query: string) => Promise<number> = async (
+    query: string,
+  ): Promise<number> => {
+    const res = await execAsync(["brightnessctl", query]);
+    return parseInt(res.trim(), 10);
+  };
 
-  const brightnessMax = get("max");
-  const brightness = Variable(get("get") / (brightnessMax || 1));
+  const initBrightness: () => Promise<void> = async (): Promise<void> => {
+    const current = await queryBrightness("get");
+    const max = await queryBrightness("max");
+    brightness.set(current / max);
+  };
+  initBrightness();
 
-  const setBrightness = (percent: number) => {
+  const setBrightness: (percent: number) => void = (percent: number) => {
     if (percent < 0) percent = 0;
     else if (percent > 1) percent = 1;
 

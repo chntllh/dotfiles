@@ -1,14 +1,14 @@
 import { bind, execAsync, GLib, Variable } from "astal";
+import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-export const BrightnessSliderExternal = () => {
+export const BrightnessSliderExternal: () => Gtk.Widget = () => {
   const hyprland = AstalHyprland.get_default();
+  const brightness: Variable<number> = Variable<number>(0);
 
   const display = "1";
   const debounceTime = 200;
   let debounceTimer: GLib.Source;
-
-  const brightness = Variable<number>(0);
 
   execAsync(["ddcutil", "getvcp", "10", "-d", display, "--terse"]).then(
     (res) => {
@@ -21,7 +21,7 @@ export const BrightnessSliderExternal = () => {
     },
   );
 
-  const setBrightness = (percent: number) => {
+  const setBrightness: (percent: number) => void = (percent: number): void => {
     if (percent < 0) percent = 0;
     else if (percent > 1) percent = 1;
 
