@@ -3,12 +3,13 @@ import style from "./style.scss";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 import { Bar } from "./widget/bar/Bar";
 import { ControlCenter } from "./widget/control-center/ControlCenter";
+import { AppLauncher } from "./widget/app-launcher/AppLauncher";
 
 const widgetMap: Map<number, Gtk.Widget[]> = new Map();
 
 const widgets: (monitor: number) => Gtk.Widget[] = (
   monitor: number,
-): Gtk.Widget[] => [Bar(monitor), ControlCenter(monitor)];
+): Gtk.Widget[] => [Bar(monitor), ControlCenter(monitor), AppLauncher()];
 
 const hypr = AstalHyprland.get_default();
 
@@ -20,7 +21,7 @@ App.start({
       .map((monitor) => widgetMap.set(monitor.id, widgets(monitor.id)));
 
     setTimeout(() => {
-      // App.toggle_window("control-center");
+      // App.toggle_window("app-launcher");
     }, 100);
 
     hypr.connect("monitor-added", (_, monitor) => {

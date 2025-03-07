@@ -12,15 +12,17 @@ export const controlCenterPage = Variable<
 export const ControlCenter = (monitor: number) => {
   return (
     <window
+      application={App}
       name={"control-center-" + monitor}
       cssName="control-center"
       namespace={"control-center"}
       monitor={monitor}
+      anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
       valign={Gtk.Align.START}
-      margin={8}
       layer={Astal.Layer.TOP}
-      exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      keymode={Astal.Keymode.EXCLUSIVE} // Comment out when developing the control-center
+      margin={8}
+      exclusivity={Astal.Exclusivity.NORMAL}
+      keymode={Astal.Keymode.ON_DEMAND} // Comment out when developing the control-center
       onKeyPressed={(self, keyval, keycode) => {
         if (keyval && keycode == 9) {
           if (controlCenterPage.get() == "main") {
@@ -30,8 +32,6 @@ export const ControlCenter = (monitor: number) => {
           }
         }
       }}
-      anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
-      application={App}
     >
       <box
         cssClasses={["control-center-page"]}

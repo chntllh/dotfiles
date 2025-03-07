@@ -50,7 +50,6 @@ export const BrightnessSliderExternal: () => Gtk.Widget = () => {
       <image iconName={"video-display-symbolic"} />
       <slider
         hexpand
-        step={2}
         value={bind(brightness)}
         onChangeValue={({ value }) => setBrightness(value)}
       />
