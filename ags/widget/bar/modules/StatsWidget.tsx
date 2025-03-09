@@ -2,9 +2,7 @@ import { execAsync, readFileAsync, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 
 // CPU Frequency
-const getCpuFrequency: (cpu: number) => Promise<number | null> = async (
-  cpu: number,
-): Promise<number | null> => {
+const getCpuFrequency = async (cpu: number): Promise<number | null> => {
   // There are 8 logical cores, 4 physical cores in my laptop
   // so there are 8 files which have their own frequecy rating in KHz
   const path = `/sys/devices/system/cpu/cpu${cpu}/cpufreq/scaling_cur_freq`;
@@ -20,31 +18,30 @@ const getCpuFrequency: (cpu: number) => Promise<number | null> = async (
   }
 };
 
-const getAverageCpuFrequency: () => Promise<string> =
-  async (): Promise<string> => {
-    // Create array as [0,1,2,3,4,5,6,7]
-    const cpuIndices: number[] = Array.from({ length: 8 }, (_, i) => i);
-    let totalFreq: number = 0;
-    let coreCount: number = 0;
+const getAverageCpuFrequency = async (): Promise<string> => {
+  // Create array as [0,1,2,3,4,5,6,7]
+  const cpuIndices: number[] = Array.from({ length: 8 }, (_, i) => i);
+  let totalFreq: number = 0;
+  let coreCount: number = 0;
 
-    for (const cpu of cpuIndices) {
-      const freq: number | null = await getCpuFrequency(cpu);
-      // Add up frequencies then later divide
-      if (freq !== null) {
-        totalFreq += freq;
-        coreCount++;
-      }
+  for (const cpu of cpuIndices) {
+    const freq: number | null = await getCpuFrequency(cpu);
+    // Add up frequencies then later divide
+    if (freq !== null) {
+      totalFreq += freq;
+      coreCount++;
     }
+  }
 
-    if (coreCount === 0) return "N/A";
-    // Convert KHz to GHz
-    return (totalFreq / coreCount / 1000000).toFixed(2) + "GHz";
-  };
+  if (coreCount === 0) return "N/A";
+  // Convert KHz to GHz
+  return (totalFreq / coreCount / 1000000).toFixed(2) + "GHz";
+};
 
 // CPU Usage
 let prevCpuStat: { totalTime?: number; totalIdle?: number } = {};
 
-const getCpuUsage: () => Promise<string> = async (): Promise<string> => {
+const getCpuUsage = async (): Promise<string> => {
   // /proc/stat reports usage over time, which will always increase, therefore
   // we need to compare results of two iterations to get the desired results
   // The cpu line has the following items
@@ -91,7 +88,7 @@ const getCpuUsage: () => Promise<string> = async (): Promise<string> => {
 };
 
 // CPU Temperature
-const getCpuTemperature: () => Promise<string> = async (): Promise<string> => {
+const getCpuTemperature = async (): Promise<string> => {
   const thermalZone = 0;
   const path = `/sys/class/thermal/thermal_zone${thermalZone}/temp`;
 
@@ -118,7 +115,7 @@ const cpuStatInit: CpuStat = {
 };
 
 // Laptop power usage
-const getEnergyRate: () => Promise<string> = async (): Promise<string> => {
+const getEnergyRate = async (): Promise<string> => {
   const path = "/sys/class/power_supply/BAT0/power_now";
 
   try {
@@ -131,7 +128,7 @@ const getEnergyRate: () => Promise<string> = async (): Promise<string> => {
 
 // Memory
 // Memory usage
-const getMemoryUsage: () => Promise<string> = async (): Promise<string> => {
+const getMemoryUsage = async (): Promise<string> => {
   const meminfoPath = "/proc/meminfo";
 
   try {
@@ -158,12 +155,12 @@ const getMemoryUsage: () => Promise<string> = async (): Promise<string> => {
   }
 };
 
-const memoryUsage: Variable<string> = Variable<string>("N/A").poll(
+const memoryUsage = Variable<string>("N/A").poll(
   2000,
   async () => await getMemoryUsage(),
 );
 
-const getCpuStats: () => Promise<CpuStat> = async (): Promise<CpuStat> => {
+const getCpuStats = async (): Promise<CpuStat> => {
   try {
     const [frequency, usage, temperature, power] = await Promise.all([
       getAverageCpuFrequency(),
@@ -183,13 +180,13 @@ const getCpuStats: () => Promise<CpuStat> = async (): Promise<CpuStat> => {
   }
 };
 
-const cpuStats: Variable<CpuStat> = Variable<CpuStat>(cpuStatInit);
+const cpuStats = Variable<CpuStat>(cpuStatInit);
 
 cpuStats.poll(2000, async () => await getCpuStats());
 
-const cpuStatsVisible: Variable<boolean> = Variable<boolean>(true);
+const cpuStatsVisible = Variable<boolean>(true);
 
-const toggleCpuStats: () => void = (): void => {
+const toggleCpuStats = (): void => {
   cpuStatsVisible.set(!cpuStatsVisible.get());
   if (cpuStatsVisible.get()) {
     cpuStats.startPoll();
@@ -205,16 +202,15 @@ const toggleCpuStats: () => void = (): void => {
 // ----------------------------------
 
 // Nvidia
-const isNvidiaGpuPresent: () => Promise<boolean> =
-  async (): Promise<boolean> => {
-    // Directly using nvidia-smi to get status of GPU
-    try {
-      const output: string = await execAsync("nvidia-smi -L");
-      return output.includes("GPU");
-    } catch {
-      return false;
-    }
-  };
+const isNvidiaGpuPresent = async (): Promise<boolean> => {
+  // Directly using nvidia-smi to get status of GPU
+  try {
+    const output: string = await execAsync("nvidia-smi -L");
+    return output.includes("GPU");
+  } catch {
+    return false;
+  }
+};
 
 type NvidiaStat = {
   gpuClock: string;
@@ -232,47 +228,46 @@ const nvidiaStatInit: NvidiaStat = {
   powerDraw: "N/A",
 };
 
-const getNvidiaStats: () => Promise<NvidiaStat> =
-  async (): Promise<NvidiaStat> => {
-    try {
-      const query: string = [
-        "temperature.gpu",
-        "clocks.current.graphics",
-        "clocks.current.memory",
-        "memory.used",
-        "memory.total",
-        "power.draw",
-      ].join(",");
+const getNvidiaStats = async (): Promise<NvidiaStat> => {
+  try {
+    const query: string = [
+      "temperature.gpu",
+      "clocks.current.graphics",
+      "clocks.current.memory",
+      "memory.used",
+      "memory.total",
+      "power.draw",
+    ].join(",");
 
-      const output: string = await execAsync(
-        `nvidia-smi --query-gpu=${query} --format=csv,noheader,nounits`,
-      );
+    const output: string = await execAsync(
+      `nvidia-smi --query-gpu=${query} --format=csv,noheader,nounits`,
+    );
 
-      const [temp, gpuClock, memClock, memUsed, memTotal, powerDraw] = output
-        .trim()
-        .split(", ");
+    const [temp, gpuClock, memClock, memUsed, memTotal, powerDraw] = output
+      .trim()
+      .split(", ");
 
-      return {
-        gpuClock: `${gpuClock}MHz`,
-        memClock: `${memClock}MHz`,
-        memory: `${((Number(memUsed) / Number(memTotal)) * 100).toFixed(1)}%`,
-        temp: `${temp}°C`,
-        powerDraw: `${powerDraw}W`,
-      };
-    } catch {
-      return nvidiaStatInit;
-    }
-  };
+    return {
+      gpuClock: `${gpuClock}MHz`,
+      memClock: `${memClock}MHz`,
+      memory: `${((Number(memUsed) / Number(memTotal)) * 100).toFixed(1)}%`,
+      temp: `${temp}°C`,
+      powerDraw: `${powerDraw}W`,
+    };
+  } catch {
+    return nvidiaStatInit;
+  }
+};
 
-export const nvidiaGpuPresent: boolean = await isNvidiaGpuPresent();
+export const nvidiaGpuPresent = await isNvidiaGpuPresent();
 
-const nvidiaStats: Variable<NvidiaStat> = Variable<NvidiaStat>(nvidiaStatInit);
+const nvidiaStats = Variable<NvidiaStat>(nvidiaStatInit);
 
 if (nvidiaGpuPresent) {
   nvidiaStats.poll(2000, async () => await getNvidiaStats());
 }
 
-const nvidiaStatsVisible: Variable<boolean> = Variable<boolean>(true);
+const nvidiaStatsVisible = Variable<boolean>(true);
 
 const toggleNvidiaStats = () => {
   nvidiaStatsVisible.set(!nvidiaStatsVisible.get());
@@ -283,7 +278,7 @@ const toggleNvidiaStats = () => {
   }
 };
 
-export const StatsWidget: () => Gtk.Widget = () => (
+export const StatsWidget = () => (
   <>
     <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
       <box cssClasses={["stats-box"]} visible={cpuStatsVisible()}>

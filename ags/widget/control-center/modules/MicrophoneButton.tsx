@@ -2,7 +2,7 @@ import { bind } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalWp from "gi://AstalWp?version=0.1";
 
-export const MicrophoneButton: () => Gtk.Widget = () => {
+export const MicrophoneButton = () => {
   const microphone = AstalWp.get_default()?.audio.defaultMicrophone!;
 
   return (

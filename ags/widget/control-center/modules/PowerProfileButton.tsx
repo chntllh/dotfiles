@@ -4,7 +4,7 @@ import AstalPowerProfiles from "gi://AstalPowerProfiles?version=0.1";
 import { controlCenterPage } from "../ControlCenter";
 import { profileNames } from "../pages/PowerProfilePage";
 
-export const PowerProfileButton: () => Gtk.Widget = () => {
+export const PowerProfileButton = () => {
   const power = AstalPowerProfiles.get_default();
 
   const toggleProfile = () => {

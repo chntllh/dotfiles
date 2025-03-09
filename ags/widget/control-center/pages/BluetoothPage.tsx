@@ -3,7 +3,7 @@ import { controlCenterPage } from "../ControlCenter";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import { bind, timeout } from "astal";
 
-export const BluetoothPage: () => Gtk.Widget = () => {
+export const BluetoothPage = () => {
   const bluetooth = AstalBluetooth.get_default();
 
   return (

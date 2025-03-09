@@ -1,83 +1,102 @@
-import { bind, Variable } from "astal";
-import { Gdk, Gtk } from "astal/gtk4";
-import AstalTray from "gi://AstalTray?version=0.1";
+import { bind } from "astal";
+import { Gdk, Gtk, hook } from "astal/gtk4";
+import AstalTray from "gi://AstalTray";
 
-const TrayItem = (id: string, item: AstalTray.TrayItem): Gtk.Widget => {
+const TrayItem = ({ item }: { item: AstalTray.TrayItem }): Gtk.Button => {
   return (
     <button
-      cssClasses={["button-widget"]}
-      name={id}
-      child={
-        <image
-          // Future: paintable cannot have a null value
-          paintable={bind(item, "iconPixbuf").as((pixbuf) =>
-            Gdk.Texture.new_for_pixbuf(pixbuf),
-          )}
-          pixelSize={20}
-        />
-      }
-      onClicked={() => item.activate(0, 0)}
+      cssClasses={["tray-item"]}
+      tooltipText={bind(item, "tooltipMarkup")}
+      setup={(self) => {
+        console.log("Tray item added:", item.tooltipMarkup);
+
+        if (item.actionGroup)
+          self.insert_action_group("dbusmenu", item.actionGroup);
+
+        let popoverMenu: Gtk.PopoverMenu | null = null;
+        if (item.menuModel) {
+          popoverMenu = Gtk.PopoverMenu.new_from_model_full(
+            item.menuModel,
+            Gtk.PopoverMenuFlags.NESTED,
+          );
+          popoverMenu.set_parent(self);
+        }
+
+        const controller = new Gtk.EventControllerLegacy({
+          propagationPhase: Gtk.PropagationPhase.CAPTURE,
+        });
+
+        controller.connect(
+          "event",
+          (_c: Gtk.EventControllerLegacy, event: Gdk.Event) => {
+            const type = event.get_event_type();
+
+            if (
+              type === Gdk.EventType.BUTTON_PRESS ||
+              type === Gdk.EventType.BUTTON_RELEASE
+            ) {
+              const pressEvent = event as Gdk.Event & {
+                get_button?: () => number;
+              };
+
+              if (typeof pressEvent.get_button !== "function") return false;
+
+              const mouseButton = pressEvent.get_button();
+
+              if (type === Gdk.EventType.BUTTON_PRESS)
+                if (
+                  mouseButton == Gdk.BUTTON_SECONDARY ||
+                  (item.isMenu && mouseButton == Gdk.BUTTON_PRIMARY)
+                )
+                  item.about_to_show();
+
+              if (type === Gdk.EventType.BUTTON_RELEASE) {
+                if (
+                  pressEvent.get_surface() !== self.get_native()?.get_surface()
+                )
+                  return false;
+
+                if (mouseButton == Gdk.BUTTON_PRIMARY) {
+                  if (item.isMenu && popoverMenu) popoverMenu.popup();
+                  else item.activate(0, 0);
+                } else if (mouseButton == Gdk.BUTTON_MIDDLE) {
+                  item.secondary_activate(0, 0);
+                } else if (popoverMenu) {
+                  popoverMenu.popup();
+                }
+              }
+            }
+            return true;
+          },
+        );
+
+        self.add_controller(controller);
+
+        hook(self, item, "notify::menu-model", () => {
+          if (popoverMenu) popoverMenu.set_menu_model(item.menuModel);
+        });
+
+        hook(self, item, "notify::action-group", (btn) => {
+          if (item.actionGroup)
+            btn.insert_action_group("dbusmenu", item.actionGroup);
+        });
+      }}
+      child={<image gicon={bind(item, "gicon")} pixelSize={20} />}
     />
-  );
+  ) as Gtk.Button;
 };
 
-export const TrayWidget = () => {
+export const TrayWidget = (): Gtk.Box => {
   const tray = AstalTray.get_default();
-  const trayVisible = Variable(true);
-
-  let itemAddedId: number | null = null;
-  let itemRemovedId: number | null = null;
-
-  const setup = (self: Gtk.Box) => {
-    let child = self.get_first_child();
-    while (child) {
-      const next = child.get_next_sibling();
-      self.remove(child);
-      child = next;
-    }
-
-    tray
-      .get_items()
-      .forEach((item) => self.append(TrayItem(item.itemId, item)));
-    trayVisible.set(self.get_first_child() !== null);
-
-    itemAddedId = tray.connect("item-added", (_, itemId) => {
-      const item = tray.get_item(itemId);
-      if (!item) return;
-
-      self.append(TrayItem(itemId, item));
-      trayVisible.set(true);
-    });
-
-    itemRemovedId = tray.connect("item-removed", (_, itemId) => {
-      let widget = self.get_first_child();
-      while (widget) {
-        if (widget instanceof Gtk.Button && widget.name === itemId) {
-          self.remove(widget);
-          break;
-        }
-        widget = widget.get_next_sibling();
-      }
-      trayVisible.set(self.get_first_child() !== null);
-    });
-  };
-
-  const onDestroy = () => {
-    if (itemAddedId) {
-      tray.disconnect(itemAddedId);
-    }
-    if (itemRemovedId) {
-      tray.disconnect(itemRemovedId);
-    }
-  };
-
   return (
     <box
       spacing={4}
       cssClasses={["tray-box"]}
-      visible={bind(trayVisible)}
-      setup={setup}
-      onDestroy={onDestroy}
-    />
-  );
+      visible={bind(tray, "items").as((items) => items.length > 0)}
+    >
+      {bind(tray, "items").as((items) =>
+        items.map((item) => <TrayItem item={item} />),
+      )}
+    </box>
+  ) as Gtk.Box;
 };

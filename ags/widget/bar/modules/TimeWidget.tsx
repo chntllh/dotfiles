@@ -9,7 +9,7 @@ const time: Variable<string> = Variable<string>("").poll(
   () => GLib.DateTime.new_now_local().format("%H:%M:%S")!,
 );
 
-export const TimeWidget: () => Gtk.Widget = () => (
+export const TimeWidget = () => (
   <button cssClasses={["button-widget"]}>
     <box cssClasses={["time-box"]}>
       <label label={day} />

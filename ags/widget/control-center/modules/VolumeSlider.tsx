@@ -2,7 +2,7 @@ import { bind } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalWp from "gi://AstalWp?version=0.1";
 
-export const VolumeSlider: () => Gtk.Widget = () => {
+export const VolumeSlider = () => {
   const speaker = AstalWp.get_default()?.audio.defaultSpeaker!;
 
   return (

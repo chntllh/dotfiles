@@ -2,7 +2,7 @@ import { bind, execAsync, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-export const BrightnessSlider: () => Gtk.Widget = () => {
+export const BrightnessSlider = () => {
   const hyprland = AstalHyprland.get_default();
   const brightness: Variable<number> = Variable<number>(0);
 

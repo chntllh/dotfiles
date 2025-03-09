@@ -1,5 +1,5 @@
 import { bind, Variable } from "astal";
-import { App, Astal, Gtk } from "astal/gtk4";
+import { App, Astal, Gdk, Gtk } from "astal/gtk4";
 import { MainPage } from "./pages/MainPage";
 import { PowerProfilePage } from "./pages/PowerProfilePage";
 import { BluetoothPage } from "./pages/BluetoothPage";
@@ -9,14 +9,14 @@ export const controlCenterPage = Variable<
   "main" | "wifi" | "power-profile" | "bluetooth"
 >("main");
 
-export const ControlCenter = (monitor: number) => {
+export const ControlCenter = (monitor: Gdk.Monitor) => {
   return (
     <window
       application={App}
       name={"control-center-" + monitor}
       cssName="control-center"
       namespace={"control-center"}
-      monitor={monitor}
+      gdkmonitor={monitor}
       anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
       valign={Gtk.Align.START}
       layer={Astal.Layer.TOP}

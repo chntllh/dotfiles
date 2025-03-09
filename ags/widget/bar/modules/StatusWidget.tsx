@@ -1,5 +1,5 @@
 import { bind, Variable } from "astal";
-import { App } from "astal/gtk4";
+import { App, Gdk } from "astal/gtk4";
 import AstalBattery from "gi://AstalBattery?version=0.1";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import AstalWp from "gi://AstalWp?version=0.1";
@@ -13,7 +13,7 @@ const speaker: AstalWp.Endpoint | undefined =
 const microphone: AstalWp.Endpoint | undefined =
   AstalWp.get_default()?.audio.defaultMicrophone;
 
-const NetworkIcon: () => Gtk.Widget = () => {
+const NetworkIcon = () => {
   const handleIcon: Variable<string> = Variable.derive(
     [
       bind(network, "primary"),
@@ -69,7 +69,7 @@ const NetworkIcon: () => Gtk.Widget = () => {
   );
 };
 
-const SpeakerVolumeIcon: () => Gtk.Widget = () => {
+const SpeakerVolumeIcon = () => {
   return (
     <image
       tooltipText={bind(speaker!, "volume").as(
@@ -95,7 +95,7 @@ const SpeakerVolumeIcon: () => Gtk.Widget = () => {
   );
 };
 
-const MicrophoneVolumeIcon: () => Gtk.Widget = () => {
+const MicrophoneVolumeIcon = () => {
   return (
     <image
       tooltipText={bind(microphone!, "volume").as(
@@ -115,7 +115,7 @@ const MicrophoneVolumeIcon: () => Gtk.Widget = () => {
   );
 };
 
-const BatteryIcon: () => Gtk.Widget = () => {
+const BatteryIcon = () => {
   const formatTime: (seconds: number) => string = (seconds: number): string => {
     return `${Math.floor(seconds / 3600)}h ${Math.floor((seconds % 3600) / 60)}min`;
   };
@@ -149,11 +149,7 @@ const BatteryIcon: () => Gtk.Widget = () => {
   );
 };
 
-export const StatusWidget: ({ monitor }: { monitor: number }) => Gtk.Widget = ({
-  monitor,
-}: {
-  monitor: number;
-}) => {
+export const StatusWidget = ({ monitor }: { monitor: Gdk.Monitor }) => {
   const batteryStatus: Variable<string> = Variable.derive(
     [bind(battery, "percentage"), bind(battery, "state")],
     (percentage, state) => {

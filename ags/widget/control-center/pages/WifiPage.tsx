@@ -3,7 +3,7 @@ import { controlCenterPage } from "../ControlCenter";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import { bind, execAsync } from "astal";
 
-export const WifiPage: () => Gtk.Widget = () => {
+export const WifiPage = () => {
   const wifi = AstalNetwork.get_default().wifi;
 
   return (

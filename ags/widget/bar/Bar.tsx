@@ -1,4 +1,4 @@
-import { App, Astal, Gtk } from "astal/gtk4";
+import { App, Astal, Gdk, Gtk } from "astal/gtk4";
 import { CenterBox } from "astal/gtk4/widget";
 import { TimeWidget } from "./modules/TimeWidget";
 import { StatusWidget } from "./modules/StatusWidget";
@@ -6,12 +6,13 @@ import { StatsWidget } from "./modules/StatsWidget";
 import { WorkspaceWidget } from "./modules/WorkspaceWidget";
 import { TrayWidget } from "./modules/TrayWidget";
 
-export const Bar: (monitor: number) => Gtk.Widget = (monitor: number) => (
+export const Bar = (monitor: Gdk.Monitor) => (
   <window
-    name={"top-bar-" + monitor}
+    name={"top-bar-" + monitor.connector}
     cssName="top-bar"
     namespace={"top-bar"}
-    monitor={monitor}
+    // monitor={monitor}
+    gdkmonitor={monitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
     layer={Astal.Layer.TOP}
     anchor={

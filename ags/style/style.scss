@@ -109,8 +109,9 @@ top-bar {
     min-height: 1rem;
     min-width: 1rem;
 
-    button {
+    .tray-item {
       all: unset;
+      /* background: red; */
     }
   }
 }

@@ -6,13 +6,8 @@ function range(max: number): number[] {
   return Array.from({ length: max + 1 }, (_, i) => i);
 }
 
-const WorkspaceButton: ({
-  ws,
-}: {
-  ws: AstalHyprland.Workspace;
-}) => Gtk.Widget = ({ ws }: { ws: AstalHyprland.Workspace }) => {
+const WorkspaceButton = ({ ws }: { ws: AstalHyprland.Workspace }) => {
   const hyprland = AstalHyprland.get_default();
-
   const classNames = Variable.derive(
     [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
     (fws, _) => {
@@ -34,7 +29,7 @@ const WorkspaceButton: ({
   );
 };
 
-export const WorkspaceWidget: () => Gtk.Widget = () => {
+export const WorkspaceWidget = () => {
   return (
     <box cssClasses={["workspaces-box"]}>
       {range(9).map((i) => (
