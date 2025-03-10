@@ -2,7 +2,7 @@ import { bind, execAsync, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-export const BrightnessSlider = () => {
+export const BrightnessSlider = (): Gtk.Box => {
   const hyprland = AstalHyprland.get_default();
   const brightness: Variable<number> = Variable<number>(0);
 
@@ -41,9 +41,10 @@ export const BrightnessSlider = () => {
       <image iconName={"video-display-symbolic"} />
       <slider
         hexpand
+        step={0.05}
         value={bind(brightness)}
         onChangeValue={({ value }) => setBrightness(value)}
       />
     </box>
-  );
+  ) as Gtk.Box;
 };

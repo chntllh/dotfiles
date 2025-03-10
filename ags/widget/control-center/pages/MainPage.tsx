@@ -8,7 +8,7 @@ import { BrightnessSliderExternal } from "../modules/BrightnessSliderExternal";
 import { VolumeSlider } from "../modules/VolumeSlider";
 import { WiredButton } from "../modules/WiredButton";
 
-export const MainPage = () => {
+export const MainPage = (): Gtk.Box => {
   const flowBox = new Gtk.FlowBox({
     max_children_per_line: 2,
     min_children_per_line: 2,
@@ -32,5 +32,5 @@ export const MainPage = () => {
         <VolumeSlider />
       </box>
     </box>
-  );
+  ) as Gtk.Box;
 };

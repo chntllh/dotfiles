@@ -3,10 +3,10 @@ import { Gtk } from "astal/gtk4";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import { controlCenterPage } from "../ControlCenter";
 
-export const BluetoothButton = () => {
-  const bluetooth = AstalBluetooth.get_default();
+const bluetooth = AstalBluetooth.get_default();
 
-  return (
+export const BluetoothButton = (): Gtk.Box =>
+  (
     <box>
       <button
         cssClasses={["qs-button-toggle"]}
@@ -16,10 +16,8 @@ export const BluetoothButton = () => {
       >
         <box spacing={8}>
           <image
-            file={bind(bluetooth, "isPowered").as((val) =>
-              val
-                ? "./icons/bluetooth-symbolic.svg"
-                : "./icons/bluetooth-none-symbolic.svg",
+            iconName={bind(bluetooth, "isPowered").as((val) =>
+              val ? "bluetooth-symbolic" : "bluetooth-none-symbolic",
             )}
           />
           <box vertical valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
@@ -42,5 +40,4 @@ export const BluetoothButton = () => {
         <image iconName={"go-next-symbolic"} />
       </button>
     </box>
-  );
-};
+  ) as Gtk.Box;

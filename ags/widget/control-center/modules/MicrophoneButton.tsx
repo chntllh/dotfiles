@@ -2,10 +2,10 @@ import { bind } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalWp from "gi://AstalWp?version=0.1";
 
-export const MicrophoneButton = () => {
-  const microphone = AstalWp.get_default()?.audio.defaultMicrophone!;
+const microphone = AstalWp.get_default()?.audio.defaultMicrophone!;
 
-  return (
+export const MicrophoneButton = (): Gtk.Box =>
+  (
     <box>
       <button
         cssClasses={["qs-button"]}
@@ -25,5 +25,4 @@ export const MicrophoneButton = () => {
         </box>
       </button>
     </box>
-  );
-};
+  ) as Gtk.Box;

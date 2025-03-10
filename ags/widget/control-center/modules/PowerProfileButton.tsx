@@ -4,26 +4,26 @@ import AstalPowerProfiles from "gi://AstalPowerProfiles?version=0.1";
 import { controlCenterPage } from "../ControlCenter";
 import { profileNames } from "../pages/PowerProfilePage";
 
-export const PowerProfileButton = () => {
-  const power = AstalPowerProfiles.get_default();
+const power = AstalPowerProfiles.get_default();
 
-  const toggleProfile = () => {
-    switch (power.activeProfile) {
-      case "power-saver":
-        power.set_active_profile("balanced");
-        break;
-      case "balanced":
-        power.set_active_profile("performance");
-        break;
-      case "performance":
-        power.set_active_profile("power-saver");
-        break;
-      default:
-        power.set_active_profile("balanced");
-    }
-  };
+const toggleProfile = () => {
+  switch (power.activeProfile) {
+    case "power-saver":
+      power.set_active_profile("balanced");
+      break;
+    case "balanced":
+      power.set_active_profile("performance");
+      break;
+    case "performance":
+      power.set_active_profile("power-saver");
+      break;
+    default:
+      power.set_active_profile("balanced");
+  }
+};
 
-  return (
+export const PowerProfileButton = (): Gtk.Box =>
+  (
     <box>
       <button
         cssClasses={["qs-button-toggle"]}
@@ -51,5 +51,4 @@ export const PowerProfileButton = () => {
         <image iconName={"go-next-symbolic"} />
       </button>
     </box>
-  );
-};
+  ) as Gtk.Box;

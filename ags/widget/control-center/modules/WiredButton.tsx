@@ -2,18 +2,18 @@ import { bind, execAsync } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 
-export const WiredButton = () => {
-  const wired = AstalNetwork.get_default().wired;
+const wired = AstalNetwork.get_default().wired;
 
-  const toggleWired = () => {
-    if (wired.state === 100) {
-      execAsync("nmcli dev disconnect enp4s0");
-    } else {
-      execAsync("nmcli dev connect enp4s0");
-    }
-  };
+const toggleWired = () => {
+  if (wired.state === 100) {
+    execAsync("nmcli dev disconnect enp4s0");
+  } else {
+    execAsync("nmcli dev connect enp4s0");
+  }
+};
 
-  return (
+export const WiredButton = (): Gtk.Box =>
+  (
     <box>
       <button cssClasses={["qs-button"]} onClicked={() => toggleWired()}>
         <box>
@@ -34,5 +34,4 @@ export const WiredButton = () => {
         </box>
       </button>
     </box>
-  );
-};
+  ) as Gtk.Box;

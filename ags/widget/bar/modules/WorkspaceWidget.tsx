@@ -2,12 +2,16 @@ import { bind, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-function range(max: number): number[] {
-  return Array.from({ length: max + 1 }, (_, i) => i);
-}
+const hyprland = AstalHyprland.get_default();
 
-const WorkspaceButton = ({ ws }: { ws: AstalHyprland.Workspace }) => {
-  const hyprland = AstalHyprland.get_default();
+const range = (max: number): number[] =>
+  Array.from({ length: max + 1 }, (_, i) => i);
+
+const WorkspaceButton = ({
+  ws,
+}: {
+  ws: AstalHyprland.Workspace;
+}): Gtk.Button => {
   const classNames = Variable.derive(
     [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
     (fws, _) => {
@@ -26,15 +30,14 @@ const WorkspaceButton = ({ ws }: { ws: AstalHyprland.Workspace }) => {
       onDestroy={() => classNames.drop()}
       onClicked={() => ws.focus()}
     />
-  );
+  ) as Gtk.Button;
 };
 
-export const WorkspaceWidget = () => {
-  return (
+export const WorkspaceWidget = (): Gtk.Box =>
+  (
     <box cssClasses={["workspaces-box"]}>
       {range(9).map((i) => (
         <WorkspaceButton ws={AstalHyprland.Workspace.dummy(i + 1, null)} />
       ))}
     </box>
-  );
-};
+  ) as Gtk.Box;

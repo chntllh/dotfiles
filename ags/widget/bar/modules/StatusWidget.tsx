@@ -13,7 +13,7 @@ const speaker: AstalWp.Endpoint | undefined =
 const microphone: AstalWp.Endpoint | undefined =
   AstalWp.get_default()?.audio.defaultMicrophone;
 
-const NetworkIcon = () => {
+const NetworkIcon = (): Gtk.Image => {
   const handleIcon: Variable<string> = Variable.derive(
     [
       bind(network, "primary"),
@@ -66,10 +66,10 @@ const NetworkIcon = () => {
       tooltipText={handleTooltip()}
       iconName={handleIcon()}
     />
-  );
+  ) as Gtk.Image;
 };
 
-const SpeakerVolumeIcon = () => {
+const SpeakerVolumeIcon = (): Gtk.Image => {
   return (
     <image
       tooltipText={bind(speaker!, "volume").as(
@@ -92,10 +92,10 @@ const SpeakerVolumeIcon = () => {
       //     )
       // }
     />
-  );
+  ) as Gtk.Image;
 };
 
-const MicrophoneVolumeIcon = () => {
+const MicrophoneVolumeIcon = (): Gtk.Image => {
   return (
     <image
       tooltipText={bind(microphone!, "volume").as(
@@ -112,10 +112,10 @@ const MicrophoneVolumeIcon = () => {
       //     )
       // }
     />
-  );
+  ) as Gtk.Image;
 };
 
-const BatteryIcon = () => {
+const BatteryIcon = (): Gtk.Image => {
   const formatTime: (seconds: number) => string = (seconds: number): string => {
     return `${Math.floor(seconds / 3600)}h ${Math.floor((seconds % 3600) / 60)}min`;
   };
@@ -146,10 +146,14 @@ const BatteryIcon = () => {
       iconName={bind(battery, "batteryIconName")}
       tooltipText={componentTooltip()}
     />
-  );
+  ) as Gtk.Image;
 };
 
-export const StatusWidget = ({ monitor }: { monitor: Gdk.Monitor }) => {
+export const StatusWidget = ({
+  monitor,
+}: {
+  monitor: Gdk.Monitor;
+}): Gtk.Button => {
   const batteryStatus: Variable<string> = Variable.derive(
     [bind(battery, "percentage"), bind(battery, "state")],
     (percentage, state) => {
@@ -181,5 +185,5 @@ export const StatusWidget = ({ monitor }: { monitor: Gdk.Monitor }) => {
         <BatteryIcon />
       </box>
     </button>
-  );
+  ) as Gtk.Button;
 };

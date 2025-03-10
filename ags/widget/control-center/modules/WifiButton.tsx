@@ -3,18 +3,18 @@ import { Gtk } from "astal/gtk4";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import { controlCenterPage } from "../ControlCenter";
 
-export const WifiButton = () => {
-  const wifi = AstalNetwork.get_default().wifi;
+const wifi = AstalNetwork.get_default().wifi;
 
-  const toggleWifi = () => {
-    if (wifi.enabled) {
-      wifi.enabled = false;
-    } else {
-      wifi.enabled = true;
-    }
-  };
+const toggleWifi = () => {
+  if (wifi.enabled) {
+    wifi.enabled = false;
+  } else {
+    wifi.enabled = true;
+  }
+};
 
-  return (
+export const WifiButton = (): Gtk.Box =>
+  (
     <box>
       <button cssClasses={["qs-button-toggle"]} onClicked={() => toggleWifi()}>
         <box>
@@ -39,5 +39,4 @@ export const WifiButton = () => {
         <image iconName={"go-next-symbolic"} />
       </button>
     </box>
-  );
-};
+  ) as Gtk.Box;

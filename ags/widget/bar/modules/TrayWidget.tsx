@@ -2,8 +2,10 @@ import { bind } from "astal";
 import { Gdk, Gtk, hook } from "astal/gtk4";
 import AstalTray from "gi://AstalTray";
 
-const TrayItem = ({ item }: { item: AstalTray.TrayItem }): Gtk.Button => {
-  return (
+const tray = AstalTray.get_default();
+
+const TrayItem = ({ item }: { item: AstalTray.TrayItem }): Gtk.Button =>
+  (
     <button
       cssClasses={["tray-item"]}
       tooltipText={bind(item, "tooltipMarkup")}
@@ -84,11 +86,9 @@ const TrayItem = ({ item }: { item: AstalTray.TrayItem }): Gtk.Button => {
       child={<image gicon={bind(item, "gicon")} pixelSize={20} />}
     />
   ) as Gtk.Button;
-};
 
-export const TrayWidget = (): Gtk.Box => {
-  const tray = AstalTray.get_default();
-  return (
+export const TrayWidget = (): Gtk.Box =>
+  (
     <box
       spacing={4}
       cssClasses={["tray-box"]}
@@ -99,4 +99,3 @@ export const TrayWidget = (): Gtk.Box => {
       )}
     </box>
   ) as Gtk.Box;
-};

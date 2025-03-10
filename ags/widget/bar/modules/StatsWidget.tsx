@@ -1,4 +1,4 @@
-import { execAsync, readFileAsync, Variable } from "astal";
+import { bind, execAsync, readFileAsync, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 
 // CPU Frequency
@@ -278,33 +278,53 @@ const toggleNvidiaStats = () => {
   }
 };
 
-export const StatsWidget = () => (
+export const StatsWidget = (): Gtk.Widget => (
   <>
     <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
-      <box cssClasses={["stats-box"]} visible={cpuStatsVisible()}>
-        <image file={"./icons/processor-symbolic.svg"} />
-        <label>{cpuStats((stat) => stat.frequency)}</label>
-        <label>{cpuStats((stat) => stat.usage)}</label>
-        <label>{cpuStats((stat) => stat.temperature)}</label>
-        <label>{cpuStats((stat) => stat.power)}</label>
-
-        <image file={"./icons/memory-symbolic.svg"} />
-        <label>{memoryUsage()}</label>
-      </box>
+      {bind(cpuStatsVisible).as((val) =>
+        val ? (
+          <box spacing={4} cssClasses={["stats-box"]}>
+            <image iconName={"processor-symbolic"} />
+            <label>{cpuStats((stat) => stat.frequency)}</label>
+            <label>{cpuStats((stat) => stat.usage)}</label>
+            <label>{cpuStats((stat) => stat.temperature)}</label>
+            <label>{cpuStats((stat) => stat.power)}</label>
+            <image iconName={"memory-symbolic"} />
+            <label>{memoryUsage()}</label>
+          </box>
+        ) : (
+          <box cssClasses={["stats-box"]}>
+            <image iconName={"processor-symbolic"} />
+          </box>
+        ),
+      )}
     </button>
+
     <button
       cssClasses={["button-widget", "nvidia-stats"]}
       onButtonPressed={toggleNvidiaStats}
       visible={nvidiaGpuPresent}
     >
-      <box cssClasses={["stats-box"]} visible={nvidiaStatsVisible()}>
-        <image file={"./icons/pci-card-symbolic.svg"} />
-        <label>{nvidiaStats((stat) => stat.gpuClock)}</label>
-        <label>{nvidiaStats((stat) => stat.memClock)}</label>
-        <label>{nvidiaStats((stat) => stat.memory)}</label>
-        <label>{nvidiaStats((stat) => stat.temp)}</label>
-        <label>{nvidiaStats((stat) => stat.powerDraw)}</label>
-      </box>
+      {bind(nvidiaStatsVisible).as((val) =>
+        val ? (
+          <box
+            cssClasses={["stats-box"]}
+            visible={nvidiaStatsVisible()}
+            spacing={8}
+          >
+            <image iconName={"pci-card-symbolic"} />
+            <label>{nvidiaStats((stat) => stat.gpuClock)}</label>
+            <label>{nvidiaStats((stat) => stat.memClock)}</label>
+            <label>{nvidiaStats((stat) => stat.memory)}</label>
+            <label>{nvidiaStats((stat) => stat.temp)}</label>
+            <label>{nvidiaStats((stat) => stat.powerDraw)}</label>
+          </box>
+        ) : (
+          <box cssClasses={["stats-box"]}>
+            <image iconName={"pci-card-symbolic"} />
+          </box>
+        ),
+      )}
     </button>
   </>
 );

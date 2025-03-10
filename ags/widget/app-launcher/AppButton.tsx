@@ -1,8 +1,8 @@
 import { App, Gtk } from "astal/gtk4";
 import AstalApps from "gi://AstalApps?version=0.1";
 
-export const AppButton = (app: AstalApps.Application): Gtk.Widget => {
-  return (
+export const AppButton = (app: AstalApps.Application): Gtk.Button =>
+  (
     <button
       onClicked={() => {
         App.get_window("app-launcher")!.hide();
@@ -22,5 +22,4 @@ export const AppButton = (app: AstalApps.Application): Gtk.Widget => {
         </box>
       </box>
     </button>
-  );
-};
+  ) as Gtk.Button;

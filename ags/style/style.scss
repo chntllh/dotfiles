@@ -61,14 +61,12 @@ top-bar {
       background: #98c379;
     }
 
-    image,
-    label {
-      margin: 0.2rem;
-    }
-
     .stats-box {
-      font-size: 0.9rem;
+      font-weight: 600;
       image {
+        all: unset;
+        min-width: 1.2rem;
+        min-height: 1.2rem;
         -gtk-icon-size: 1.2rem;
       }
     }
@@ -95,7 +93,7 @@ top-bar {
     .time-box {
       label {
         font-weight: 700;
-        margin: 0.2rem;
+        /* margin: 0.2rem; */
       }
     }
   }

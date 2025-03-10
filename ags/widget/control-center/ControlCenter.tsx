@@ -9,8 +9,8 @@ export const controlCenterPage = Variable<
   "main" | "wifi" | "power-profile" | "bluetooth"
 >("main");
 
-export const ControlCenter = (monitor: Gdk.Monitor) => {
-  return (
+export const ControlCenter = (monitor: Gdk.Monitor): Gtk.Window =>
+  (
     <window
       application={App}
       name={"control-center-" + monitor}
@@ -53,5 +53,4 @@ export const ControlCenter = (monitor: Gdk.Monitor) => {
         </stack>
       </box>
     </window>
-  );
-};
+  ) as Gtk.Window;

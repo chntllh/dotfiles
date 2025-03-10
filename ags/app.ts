@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from "astal/gtk4";
+import { App, Astal, Gdk } from "astal/gtk4";
 import { Bar } from "./widget/bar/Bar";
 import { ControlCenter } from "./widget/control-center/ControlCenter";
 import { AppLauncher } from "./widget/app-launcher/AppLauncher";
@@ -107,4 +107,5 @@ const main = (): void => {
 
 App.start({
   main,
+  icons: `${SRC}/icons`,
 });

@@ -2,7 +2,7 @@ import { bind, execAsync, GLib, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 
-export const BrightnessSliderExternal = () => {
+export const BrightnessSliderExternal = (): Gtk.Box => {
   const hyprland = AstalHyprland.get_default();
   const brightness: Variable<number> = Variable<number>(0);
 
@@ -47,12 +47,15 @@ export const BrightnessSliderExternal = () => {
         monitors.some((monitor) => monitor.name === "HDMI-A-1"),
       )}
     >
-      <image iconName={"video-display-symbolic"} />
+      <button onClicked={() => setBrightness(0)}>
+        <image iconName={"video-display-symbolic"} pixelSize={24} />
+      </button>
       <slider
         hexpand
+        step={0.1}
         value={bind(brightness)}
         onChangeValue={({ value }) => setBrightness(value)}
       />
     </box>
-  );
+  ) as Gtk.Box;
 };

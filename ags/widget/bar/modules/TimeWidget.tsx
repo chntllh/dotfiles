@@ -9,12 +9,13 @@ const time: Variable<string> = Variable<string>("").poll(
   () => GLib.DateTime.new_now_local().format("%H:%M:%S")!,
 );
 
-export const TimeWidget = () => (
-  <button cssClasses={["button-widget"]}>
-    <box cssClasses={["time-box"]}>
-      <label label={day} />
-      <label label={date} />
-      <label label={time()} />
-    </box>
-  </button>
-);
+export const TimeWidget = (): Gtk.Button =>
+  (
+    <button cssClasses={["button-widget"]}>
+      <box cssClasses={["time-box"]} spacing={4}>
+        <label label={day} />
+        <label label={date} />
+        <label label={time()} />
+      </box>
+    </button>
+  ) as Gtk.Button;

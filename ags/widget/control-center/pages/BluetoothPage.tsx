@@ -3,10 +3,10 @@ import { controlCenterPage } from "../ControlCenter";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import { bind, timeout } from "astal";
 
-export const BluetoothPage = () => {
-  const bluetooth = AstalBluetooth.get_default();
+const bluetooth = AstalBluetooth.get_default();
 
-  return (
+export const BluetoothPage = (): Gtk.Box =>
+  (
     <box name="bluetooth" vertical spacing={8}>
       <centerbox cssClasses={["page-header"]}>
         <button
@@ -54,5 +54,4 @@ export const BluetoothPage = () => {
         </box>
       </Gtk.ScrolledWindow>
     </box>
-  );
-};
+  ) as Gtk.Box;

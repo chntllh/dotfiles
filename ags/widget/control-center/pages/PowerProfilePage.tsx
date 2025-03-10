@@ -9,12 +9,12 @@ export const profileNames: Record<string, string> = {
   performance: "Supra",
 };
 
-export const PowerProfilePage = () => {
-  const power = AstalPowerProfiles.get_default();
+const power = AstalPowerProfiles.get_default();
 
-  const profiles: AstalPowerProfiles.Profile[] = power.get_profiles();
+const profiles: AstalPowerProfiles.Profile[] = power.get_profiles();
 
-  return (
+export const PowerProfilePage = (): Gtk.Box =>
+  (
     <box name="power-profile" vertical spacing={8}>
       <centerbox cssClasses={["page-header"]}>
         <button
@@ -44,5 +44,4 @@ export const PowerProfilePage = () => {
         ))}
       </box>
     </box>
-  );
-};
+  ) as Gtk.Box;

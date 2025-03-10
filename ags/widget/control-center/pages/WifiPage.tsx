@@ -3,10 +3,10 @@ import { controlCenterPage } from "../ControlCenter";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
 import { bind, execAsync } from "astal";
 
-export const WifiPage = () => {
-  const wifi = AstalNetwork.get_default().wifi;
+const wifi = AstalNetwork.get_default().wifi;
 
-  return (
+export const WifiPage = (): Gtk.Box =>
+  (
     <box name="wifi" vertical spacing={8}>
       <centerbox cssClasses={["page-header"]}>
         <button
@@ -58,5 +58,4 @@ export const WifiPage = () => {
         </box>
       </Gtk.ScrolledWindow>
     </box>
-  );
-};
+  ) as Gtk.Box;
