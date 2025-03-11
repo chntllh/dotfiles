@@ -1,9 +1,9 @@
 import { bind, Variable } from "astal";
 import { App, Astal, Gdk, Gtk } from "astal/gtk4";
-import { MainPage } from "./pages/MainPage";
-import { PowerProfilePage } from "./pages/PowerProfilePage";
-import { BluetoothPage } from "./pages/BluetoothPage";
-import { WifiPage } from "./pages/WifiPage";
+// import { PowerProfilePage } from "./pages/PowerProfilePage";
+import { Toggles } from "./components/Toggles";
+import { Sliders } from "./components/Sliders";
+import { BluetoothPage, PowerProfilePage, WifiPage } from "./components/Pages";
 
 export const controlCenterPage = Variable<
   "main" | "wifi" | "power-profile" | "bluetooth"
@@ -46,7 +46,10 @@ export const ControlCenter = (monitor: Gdk.Monitor): Gtk.Window =>
           transitionDuration={100}
           visibleChildName={bind(controlCenterPage)}
         >
-          <MainPage />
+          <box name="main" vertical spacing={0}>
+            <Toggles />
+            <Sliders />
+          </box>
           <WifiPage />
           <BluetoothPage />
           <PowerProfilePage />

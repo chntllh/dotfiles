@@ -2,7 +2,7 @@ import { App, Astal, Gdk } from "astal/gtk4";
 import { Bar } from "./widget/bar/Bar";
 import { ControlCenter } from "./widget/control-center/ControlCenter";
 import { AppLauncher } from "./widget/app-launcher/AppLauncher";
-import { execAsync, Gio, monitorFile } from "astal";
+import { execAsync, Gio, monitorFile, timeout } from "astal";
 
 async function monitorStyle() {
   const pathsToMonitor = [`${SRC}/style`];
@@ -57,6 +57,9 @@ const main = (): void => {
 
   for (const monitor of App.get_monitors()) {
     windows.set(monitor, setWindows(monitor));
+    // timeout(100, () => {
+    //   App.toggle_window("control-center-" + monitor);
+    // });
   }
 
   const display: Gdk.Display | null = Gdk.Display.get_default();
