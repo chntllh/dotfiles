@@ -3,6 +3,10 @@ import { Bar } from "./widget/bar/Bar";
 import { ControlCenter } from "./widget/control-center/ControlCenter";
 import { AppLauncher } from "./widget/app-launcher/AppLauncher";
 import { execAsync, Gio, monitorFile, timeout } from "astal";
+import {
+  initExternalBrightness,
+  initLaptopBrightness,
+} from "./global/initialize";
 
 async function monitorStyle() {
   const pathsToMonitor = [`${SRC}/style`];
@@ -36,6 +40,11 @@ async function monitorStyle() {
 
 monitorStyle();
 
+const initialize = () => {
+  initLaptopBrightness();
+  initExternalBrightness();
+};
+
 const logSetChanges = (label: string, set: Set<Gdk.Monitor>): void => {
   console.log(
     label,
@@ -57,9 +66,9 @@ const main = (): void => {
 
   for (const monitor of App.get_monitors()) {
     windows.set(monitor, setWindows(monitor));
-    // timeout(100, () => {
-    //   App.toggle_window("control-center-" + monitor);
-    // });
+    timeout(100, () => {
+      App.toggle_window("control-center-" + monitor);
+    });
   }
 
   const display: Gdk.Display | null = Gdk.Display.get_default();
@@ -96,16 +105,21 @@ const main = (): void => {
 
       display?.sync();
 
-      logSetChanges("prevSet:", prevSet);
-      logSetChanges("currSet:", currSet);
+      // logSetChanges("prevSet:", prevSet);
+      // logSetChanges("currSet:", currSet);
       logSetChanges("removed:", removed);
       logSetChanges("added:", added);
 
+      if (idxAdded === 1) {
+        initialize();
+      }
       for (const monitor of added) {
         windows.set(monitor, setWindows(monitor));
       }
     },
   );
+
+  initialize();
 };
 
 App.start({

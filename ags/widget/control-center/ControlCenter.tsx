@@ -1,9 +1,9 @@
 import { bind, Variable } from "astal";
 import { App, Astal, Gdk, Gtk } from "astal/gtk4";
 // import { PowerProfilePage } from "./pages/PowerProfilePage";
-import { Toggles } from "./components/Toggles";
-import { Sliders } from "./components/Sliders";
-import { BluetoothPage, PowerProfilePage, WifiPage } from "./components/Pages";
+import { Toggles } from "./modules/Toggles";
+import { Sliders } from "./modules/Sliders";
+import { BluetoothPage, PowerProfilePage, WifiPage } from "./modules/Pages";
 
 export const controlCenterPage = Variable<
   "main" | "wifi" | "power-profile" | "bluetooth"

@@ -1,4 +1,4 @@
-import { bind, Binding } from "astal";
+import { bind } from "astal";
 import { Gtk } from "astal/gtk4";
 import { execAsync } from "astal";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
@@ -6,59 +6,7 @@ import { controlCenterPage } from "../ControlCenter";
 import AstalWp from "gi://AstalWp?version=0.1";
 import AstalPowerProfiles from "gi://AstalPowerProfiles?version=0.1";
 import AstalNetwork from "gi://AstalNetwork?version=0.1";
-
-interface ToggleButtonProps {
-  label: string;
-  icon: string | Binding<string>;
-  onToggle: () => void;
-  secondaryLabel?: string | Binding<string>;
-  hasSecondaryButton?: boolean;
-  secondaryIcon?: string | Binding<string>;
-  onSecondaryClick?: () => void;
-}
-
-const ToggleButton = ({
-  label,
-  icon,
-  onToggle,
-  secondaryLabel,
-  hasSecondaryButton = false,
-  secondaryIcon = "go-next-symbolic",
-  onSecondaryClick,
-}: ToggleButtonProps): Gtk.Box => {
-  return (
-    <box heightRequest={3 * 16}>
-      <button
-        cssClasses={[
-          hasSecondaryButton ? "qs-button-left-rounded" : "qs-button-rounded",
-        ]}
-        onClicked={onToggle}
-        widthRequest={hasSecondaryButton ? 9 * 16 : 11 * 16}
-      >
-        <box spacing={8}>
-          <image iconName={icon} pixelSize={24} marginStart={0.5 * 16} />
-          <box vertical valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
-            <label cssClasses={["qs-title"]} hexpand>
-              {label}
-            </label>
-            {secondaryLabel && (
-              <label cssClasses={["qs-subtitle"]}>{secondaryLabel}</label>
-            )}
-          </box>
-        </box>
-      </button>
-      {hasSecondaryButton && onSecondaryClick && (
-        <button
-          cssClasses={["qs-button-right-rounded"]}
-          onClicked={onSecondaryClick}
-          widthRequest={2 * 16}
-        >
-          <image iconName={secondaryIcon} />
-        </button>
-      )}
-    </box>
-  ) as Gtk.Box;
-};
+import { ToggleButton } from "../../../components/Toggle";
 
 const BluetoothButton = (): Gtk.Box => {
   const bluetooth = AstalBluetooth.get_default();
@@ -69,9 +17,9 @@ const BluetoothButton = (): Gtk.Box => {
       val ? "bluetooth-symbolic" : "bluetooth-none-symbolic",
     ),
     onToggle: () => bluetooth.toggle(),
-    secondaryLabel: bind(bluetooth, "isConnected").as((connected) =>
-      connected ? "Connected" : "Not Connected",
-    ),
+    secondaryLabel: bind(bluetooth, "isConnected").as((connected) => {
+      return connected ? "Connected" : null;
+    }),
     hasSecondaryButton: true,
     onSecondaryClick: () => controlCenterPage.set("bluetooth"),
   });
@@ -85,7 +33,7 @@ const MicrophoneButton = (): Gtk.Box => {
     icon: bind(microphone, "volumeIcon"),
     onToggle: () => (microphone.mute = !microphone.mute),
     secondaryLabel: bind(microphone, "mute").as((muted) =>
-      muted ? "Muted" : "Un-Muted",
+      muted ? "Muted" : null,
     ),
   });
 };
@@ -142,12 +90,28 @@ const WiredButton = (): Gtk.Box => {
     label: "Wired",
     icon: bind(wired, "iconName"),
     onToggle: () =>
-      wired.state === 100
-        ? execAsync("nmcli dev disconnect enp4s0")
-        : execAsync("nmcli dev connect enp4s0"),
-    secondaryLabel: bind(wired, "state").as((val) =>
-      val === 100 ? "Connected" : "Disconnected",
-    ),
+      wired.state !== 100
+        ? execAsync("nmcli dev connect enp4s0")
+        : execAsync("nmcli dev disconnect enp4s0"),
+    secondaryLabel: bind(wired, "state").as((val) => {
+      // print(val);
+      switch (val) {
+        case 100:
+          return "Connected";
+        case 70:
+          "IP Configuring";
+        case 50:
+          return "Configuring";
+        case 40:
+          return "Preparing";
+        case 30:
+          return null;
+        case 20:
+          return "Unavailable";
+        default:
+          return null;
+      }
+    }),
   });
 };
 

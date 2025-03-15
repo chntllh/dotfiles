@@ -11,8 +11,8 @@
   "base_keymap": "VSCode",
   "ui_font_size": 14,
   "buffer_font_size": 12.0,
-  "buffer_font_family": "CaskaydiaCove Nerd Font",
-  "buffer_font_weight": 400,
+  "buffer_font_family": "FiraCode Nerd Font",
+  // "buffer_font_weight": 300,
   "buffer_font_features": {
     "calt": true
   },
@@ -24,7 +24,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "Gruvbox Dark Hard"
   },
   "relative_line_numbers": true,
   "tab_bar": {
@@ -81,6 +81,11 @@
           }
         }
       ]
+    },
+    "TSX": {
+      "prettier": {
+        "allowed": true
+      }
     }
   },
   "jupyter": {

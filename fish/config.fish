@@ -19,3 +19,5 @@ else
 end
 # <<< conda initialize <<<
 
+zoxide init fish | source
+
