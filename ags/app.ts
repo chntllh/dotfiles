@@ -67,7 +67,7 @@ const main = (): void => {
   for (const monitor of App.get_monitors()) {
     windows.set(monitor, setWindows(monitor));
     timeout(100, () => {
-      App.toggle_window("control-center-" + monitor);
+      // App.toggle_window("control-center-" + monitor);
     });
   }
 

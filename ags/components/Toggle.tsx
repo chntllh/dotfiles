@@ -1,11 +1,11 @@
-import { Binding } from "astal";
+import { bind, Binding } from "astal";
 import { Gtk } from "astal/gtk4";
 
 interface ToggleButtonProps {
   label: string;
   icon: string | Binding<string>;
   onToggle: () => void;
-  secondaryLabel: Binding<string | null>;
+  secondaryLabel: Binding<string>;
   hasSecondaryButton?: boolean;
   secondaryIcon?: string | Binding<string>;
   onSecondaryClick?: () => void;
@@ -30,14 +30,17 @@ export const ToggleButton = ({
         widthRequest={hasSecondaryButton ? 9 * 16 : 11 * 16}
       >
         <box spacing={8}>
-          <image iconName={icon} pixelSize={24} marginStart={0.5 * 16} />
+          <image iconName={icon} pixelSize={1.2 * 16} marginStart={0.5 * 16} />
           <box vertical valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
             <label cssClasses={["qs-title"]} hexpand>
               {label}
             </label>
-            {secondaryLabel.as((val) =>
-              val ? <label cssClasses={["qs-subtitle"]}>{val}</label> : <></>,
-            )}
+            <label
+              cssClasses={["qs-subtitle"]}
+              hexpand
+              visible={bind(secondaryLabel.as((val) => val !== ""))}
+              label={secondaryLabel}
+            />
           </box>
         </box>
       </button>

@@ -18,7 +18,7 @@ const BluetoothButton = (): Gtk.Box => {
     ),
     onToggle: () => bluetooth.toggle(),
     secondaryLabel: bind(bluetooth, "isConnected").as((connected) => {
-      return connected ? "Connected" : null;
+      return connected ? "Connected" : "";
     }),
     hasSecondaryButton: true,
     onSecondaryClick: () => controlCenterPage.set("bluetooth"),
@@ -33,7 +33,7 @@ const MicrophoneButton = (): Gtk.Box => {
     icon: bind(microphone, "volumeIcon"),
     onToggle: () => (microphone.mute = !microphone.mute),
     secondaryLabel: bind(microphone, "mute").as((muted) =>
-      muted ? "Muted" : null,
+      muted ? "Muted" : "",
     ),
   });
 };
@@ -105,11 +105,11 @@ const WiredButton = (): Gtk.Box => {
         case 40:
           return "Preparing";
         case 30:
-          return null;
+          return "";
         case 20:
           return "Unavailable";
         default:
-          return null;
+          return "";
       }
     }),
   });

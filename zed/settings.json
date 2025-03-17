@@ -39,7 +39,7 @@
     "clangd": {
       "binary": {
         "path": "/usr/bin/clangd",
-        "arguments": []
+        "arguments": ["--function-arg-placeholders=0"]
       }
     },
     "pyright": {
@@ -82,9 +82,20 @@
         }
       ]
     },
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    },
     "TSX": {
-      "prettier": {
-        "allowed": true
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
       }
     }
   },

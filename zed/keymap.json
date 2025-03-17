@@ -9,7 +9,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-r": ["task::Spawn", { "task_name": "C++: Build and Run" }]
+      // "ctrl-r": ["task::Spawn", { "task_name": "C++: Build and Run" }]
+      // "ctrl-r": ["task::Spawn"]
     }
   },
   {

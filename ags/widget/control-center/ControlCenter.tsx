@@ -1,6 +1,5 @@
 import { bind, Variable } from "astal";
 import { App, Astal, Gdk, Gtk } from "astal/gtk4";
-// import { PowerProfilePage } from "./pages/PowerProfilePage";
 import { Toggles } from "./modules/Toggles";
 import { Sliders } from "./modules/Sliders";
 import { BluetoothPage, PowerProfilePage, WifiPage } from "./modules/Pages";
@@ -40,13 +39,17 @@ export const ControlCenter = (monitor: Gdk.Monitor): Gtk.Window =>
         valign={Gtk.Align.START}
         // widthRequest={400}
         heightRequest={400}
+        marginTop={0.5 * 16}
+        marginBottom={0.5 * 16}
+        marginStart={0.5 * 16}
+        marginEnd={0.5 * 16}
       >
         <stack
           transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
           transitionDuration={100}
           visibleChildName={bind(controlCenterPage)}
         >
-          <box name="main" vertical spacing={0}>
+          <box name="main" vertical spacing={1 * 16}>
             <Toggles />
             <Sliders />
           </box>

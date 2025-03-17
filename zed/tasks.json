@@ -46,9 +46,16 @@
   //   "shell": "system"
   // },
   {
-    "label": "C++: Build and Run",
-    // "command": "g++ $ZED_FILE -o a && ./a",
-    "command": "g++ $ZED_FILE -o $ZED_DIRNAME/$ZED_STEM && $ZED_DIRNAME/$ZED_STEM",
+    "label": "C++: Build and Run (Single file)",
+    "command": "g++ $ZED_FILE -o $ZED_DIRNAME/$ZED_STEM && $ZED_DIRNAME/$ZED_STEM", // Compile open file only.
+    "use_new_terminal": false,
+    "reveal": "always",
+    "show_summary": false,
+    "show_command": false
+  },
+  {
+    "label": "C++: Build and Run (Multiple files)",
+    "command": "g++ $ZED_DIRNAME/**.cpp -o $ZED_DIRNAME/$ZED_STEM && $ZED_DIRNAME/$ZED_STEM", // Compile all files inside the directory
     "use_new_terminal": false,
     "reveal": "always",
     "show_summary": false,
