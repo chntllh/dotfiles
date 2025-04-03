@@ -12,7 +12,15 @@ import { bind } from "astal";
 //   "fish",
 // ];
 
-const apps = new AstalApps.Apps();
+const apps = new AstalApps.Apps({
+  // minScore: 0.5,
+  // nameMultiplier: 1,
+  // entryMultiplier: 0,
+  // executableMultiplier: 0,
+  // descriptionMultiplier: 0,
+  // keywordsMultiplier: 0,
+  // categoriesMultiplier: 0,
+});
 
 let textBox: Gtk.Entry;
 export const AppLauncher = (): Gtk.Window =>
@@ -59,7 +67,8 @@ export const AppLauncher = (): Gtk.Window =>
           <box vertical spacing={4}>
             {bind(textBox, "text").as((text) =>
               apps
-                .fuzzy_query(text)
+                // .fuzzy_query(text)
+                .exact_query(text)
                 // .filter((app) => !appFilter.includes(app.executable))
                 .map((app: AstalApps.Application) => AppButton(app)),
             )}

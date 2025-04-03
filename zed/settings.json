@@ -62,6 +62,33 @@
           }
         }
       }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "diagnostics": {
+          "enable": true,
+          "experimental": {
+            "refreshOnChanges": true
+          }
+        },
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          },
+          "updateHints": {
+            "enable": true,
+            "debounce": 10
+          }
+        },
+        "rustfmt": {
+          "extraArgs": []
+        }
+      }
     }
   },
   "languages": {
@@ -80,7 +107,8 @@
             "source.organizeImports.ruff": true
           }
         }
-      ]
+      ],
+      "tab_size": 2
     },
     "TypeScript": {
       "format_on_save": {
@@ -88,7 +116,8 @@
           "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
-      }
+      },
+      "tab_size": 2
     },
     "TSX": {
       "format_on_save": {
@@ -96,7 +125,11 @@
           "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
-      }
+      },
+      "tab_size": 2
+    },
+    "Rust": {
+      "tab_size": 4
     }
   },
   "jupyter": {

@@ -12,7 +12,7 @@ const time: Variable<string> = Variable<string>("").poll(
 export const TimeWidget = (): Gtk.Button =>
   (
     <button cssClasses={["button-widget"]}>
-      <box cssClasses={["time-box"]} spacing={4}>
+      <box cssClasses={["time-box"]} spacing={0.4 * 16}>
         <label label={day} />
         <label label={date} />
         <label label={time()} />

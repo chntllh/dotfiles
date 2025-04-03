@@ -22,16 +22,22 @@ export const Bar = (monitor: Gdk.Monitor): Gtk.Window =>
       }
       application={App}
       visible
+      heightRequest={2 * 16}
     >
-      <CenterBox>
-        <box valign={Gtk.Align.CENTER}>
+      <CenterBox
+        marginStart={0.5 * 16}
+        marginEnd={1 * 16}
+        // marginTop={0.5 * 16}
+        // marginBottom={0.5 * 16}
+      >
+        <box valign={Gtk.Align.CENTER} spacing={0.5 * 16}>
           <TimeWidget />
           <StatsWidget />
         </box>
         <box valign={Gtk.Align.CENTER}>
           <WorkspaceWidget />
         </box>
-        <box valign={Gtk.Align.CENTER}>
+        <box valign={Gtk.Align.CENTER} spacing={0.5 * 16}>
           <TrayWidget />
           <StatusWidget monitor={monitor} />
         </box>

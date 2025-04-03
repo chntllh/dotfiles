@@ -1,7 +1,3 @@
-@mixin rounded-full {
-  border-radius: 9999rem;
-}
-
 @keyframes warning {
   to {
     background-color: #d19a66;
@@ -15,21 +11,19 @@
 
 top-bar {
   background: #1e21279f;
-  min-height: 1rem;
-  padding: 0.3rem;
 
   font-family: "SF Mono";
   font-size: 1rem;
   font-weight: 500;
 
   .workspace-button {
-    all: unset;
-    @include rounded-full;
+    background: #56b6c2;
+    border-radius: 9999rem;
     min-width: 1rem;
     min-height: 1rem;
-    margin: 0.1rem 0.25rem;
-    background: #56b6c2;
-    transition: 50ms linear;
+    padding: 0;
+    margin: 0.25rem;
+    transition: 100ms linear;
 
     &.occupied {
       background: #61afef;
@@ -45,11 +39,9 @@ top-bar {
   }
 
   .button-widget {
-    all: unset;
-    @include rounded-full;
-    line-height: 1rem;
-    margin: 0 0.3rem;
     background: #56b6c2;
+    border-radius: 9999rem;
+    line-height: 1rem;
     padding: 0.2rem 0.5rem;
     min-height: 1rem;
     min-width: 1rem;
@@ -59,23 +51,6 @@ top-bar {
     }
     &.nvidia-stats {
       background: #98c379;
-    }
-
-    .stats-box {
-      font-weight: 600;
-      image {
-        all: unset;
-        min-width: 1.2rem;
-        min-height: 1.2rem;
-        -gtk-icon-size: 1.2rem;
-      }
-    }
-
-    .status-box {
-      image,
-      label {
-        margin: 0.2rem 0.3rem;
-      }
     }
 
     &.battery-charging {
@@ -90,32 +65,17 @@ top-bar {
       animation: critical 0.5s infinite steps(10) alternate;
     }
 
-    .time-box {
-      label {
-        font-weight: 700;
-        /* margin: 0.2rem; */
-      }
-    }
-  }
-
-  .tray-box {
-    @include rounded-full;
-    line-height: 1rem;
-    margin: 0 0.3rem;
-    background: #56b6c2;
-    padding: 0 0.5rem;
-    min-height: 1rem;
-    min-width: 1rem;
-
     .tray-item {
-      all: unset;
-      /* background: red; */
+      min-height: 0;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
     }
   }
 }
 
 control-center {
-  background: #1e21279f;
+  background: #1e21277f;
   color: #ffffff;
 
   border-radius: 1rem;

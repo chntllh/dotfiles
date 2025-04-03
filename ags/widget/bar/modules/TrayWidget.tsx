@@ -83,15 +83,15 @@ const TrayItem = ({ item }: { item: AstalTray.TrayItem }): Gtk.Button =>
             btn.insert_action_group("dbusmenu", item.actionGroup);
         });
       }}
-      child={<image gicon={bind(item, "gicon")} pixelSize={20} />}
+      child={<image gicon={bind(item, "gicon")} pixelSize={1 * 16} />}
     />
   ) as Gtk.Button;
 
 export const TrayWidget = (): Gtk.Box =>
   (
     <box
-      spacing={4}
-      cssClasses={["tray-box"]}
+      spacing={0.25 * 16}
+      cssClasses={["button-widget"]}
       visible={bind(tray, "items").as((items) => items.length > 0)}
     >
       {bind(tray, "items").as((items) =>

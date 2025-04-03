@@ -1,4 +1,4 @@
-# Using an animated svg for image
+# Using an animated svg/gif for image
 
 ## Using astalify to make a custom WebView widget
 
@@ -25,3 +25,19 @@ const WebView = astalify<WebKit.WebView, WebKit.WebView.ConstructorProps>(
   heightRequest={32}
 />
 ```
+
+# Using webview to access a website
+
+```tsx
+<WebView
+  setup={(self) => {
+    self.load_uri(`<URL>`); // URL to a website
+    self.set_background_color(
+      new Gdk.RGBA({ red: 0, green: 0, blue: 0, alpha: 0 }),
+    );
+    self.set_zoom_level(0.75);
+  }}
+  widthRequest={32}
+  heightRequest={32}
+/>
+````

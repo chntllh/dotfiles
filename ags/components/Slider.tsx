@@ -23,7 +23,7 @@ export const Slider = ({
   return (
     <box visible={visible}>
       <button onClicked={onClick ? onClick : undefined}>
-        <image iconName={icon} pixelSize={24} />
+        <image iconName={icon} pixelSize={1.2 * 16} />
       </button>
       <slider
         max={max}

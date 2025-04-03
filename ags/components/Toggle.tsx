@@ -7,7 +7,6 @@ interface ToggleButtonProps {
   onToggle: () => void;
   secondaryLabel: Binding<string>;
   hasSecondaryButton?: boolean;
-  secondaryIcon?: string | Binding<string>;
   onSecondaryClick?: () => void;
 }
 
@@ -17,7 +16,6 @@ export const ToggleButton = ({
   onToggle,
   secondaryLabel,
   hasSecondaryButton = false,
-  secondaryIcon = "go-next-symbolic",
   onSecondaryClick,
 }: ToggleButtonProps): Gtk.Box => {
   return (
@@ -27,19 +25,30 @@ export const ToggleButton = ({
           hasSecondaryButton ? "qs-button-left-rounded" : "qs-button-rounded",
         ]}
         onClicked={onToggle}
-        widthRequest={hasSecondaryButton ? 9 * 16 : 11 * 16}
+        widthRequest={hasSecondaryButton ? 8 * 16 : 10 * 16}
       >
         <box spacing={8}>
-          <image iconName={icon} pixelSize={1.2 * 16} marginStart={0.5 * 16} />
-          <box vertical valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
+          <image iconName={icon} pixelSize={1.2 * 16} marginStart={0.25 * 16} />
+          <box
+            vertical
+            valign={Gtk.Align.CENTER}
+            halign={Gtk.Align.CENTER}
+            marginEnd={hasSecondaryButton ? 0 : 1.5 * 16}
+          >
             <label cssClasses={["qs-title"]} hexpand>
               {label}
             </label>
             <label
               cssClasses={["qs-subtitle"]}
               hexpand
-              visible={bind(secondaryLabel.as((val) => val !== ""))}
-              label={secondaryLabel}
+              visible={bind(
+                secondaryLabel!.as((val) => val != null && val != ""),
+              )}
+              label={bind(
+                secondaryLabel.as((val) => {
+                  return val ? val : "";
+                }),
+              )}
             />
           </box>
         </box>
@@ -48,9 +57,9 @@ export const ToggleButton = ({
         <button
           cssClasses={["qs-button-right-rounded"]}
           onClicked={onSecondaryClick}
-          widthRequest={2 * 16}
+          // widthRequest={2.5 * 16}
         >
-          <image iconName={secondaryIcon} />
+          <image iconName={"go-next-symbolic"} />
         </button>
       )}
     </box>

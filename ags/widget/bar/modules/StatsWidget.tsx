@@ -280,10 +280,10 @@ const toggleNvidiaStats = () => {
 
 export const StatsWidget = (): Gtk.Widget => (
   <>
-    <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
+    {/* <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
       {bind(cpuStatsVisible).as((val) =>
         val ? (
-          <box spacing={4} cssClasses={["stats-box"]}>
+          <box spacing={0.25 * 16} cssClasses={["stats-box"]}>
             <image iconName={"processor-symbolic"} />
             <label>{cpuStats((stat) => stat.frequency)}</label>
             <label>{cpuStats((stat) => stat.usage)}</label>
@@ -298,6 +298,26 @@ export const StatsWidget = (): Gtk.Widget => (
           </box>
         ),
       )}
+    </button> */}
+
+    <button cssClasses={["button-widget"]} onButtonPressed={toggleCpuStats}>
+      <box spacing={0.25 * 16} cssClasses={["stats-box"]}>
+        <image iconName={"processor-symbolic"} />
+        {bind(cpuStatsVisible).as((val) =>
+          val ? (
+            <>
+              <label>{cpuStats((stat) => stat.frequency)}</label>
+              <label>{cpuStats((stat) => stat.usage)}</label>
+              <label>{cpuStats((stat) => stat.temperature)}</label>
+              <label>{cpuStats((stat) => stat.power)}</label>
+              <image iconName={"memory-symbolic"} />
+              <label>{memoryUsage()}</label>
+            </>
+          ) : (
+            <></>
+          ),
+        )}
+      </box>
     </button>
 
     <button
@@ -308,9 +328,9 @@ export const StatsWidget = (): Gtk.Widget => (
       {bind(nvidiaStatsVisible).as((val) =>
         val ? (
           <box
+            spacing={0.25 * 16}
             cssClasses={["stats-box"]}
             visible={nvidiaStatsVisible()}
-            spacing={8}
           >
             <image iconName={"pci-card-symbolic"} />
             <label>{nvidiaStats((stat) => stat.gpuClock)}</label>

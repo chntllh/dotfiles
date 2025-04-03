@@ -126,16 +126,19 @@ const BatteryIcon = (): Gtk.Image => {
       bind(battery, "timeToFull"),
       bind(battery, "timeToEmpty"),
       bind(battery, "percentage"),
+      bind(battery, "energyFull"),
     ],
     (
       isCharging: boolean,
       timeToFull: number,
       timeToEmpty: number,
       percentage: number,
+      energyFull: number,
     ): string => {
       return [
         `${isCharging ? `Time to full: ${formatTime(timeToFull)}` : `Time to empty: ${formatTime(timeToEmpty)}`}`,
         `Percentage: ${percentage * 100}`,
+        `Health: ${((energyFull / 75.998) * 100).toFixed(2)}%`,
       ].join("\n");
     },
   );
@@ -178,7 +181,7 @@ export const StatusWidget = ({
         App.toggle_window("control-center-" + monitor);
       }}
     >
-      <box cssClasses={["status-box"]}>
+      <box cssClasses={["status-box"]} spacing={0.5 * 16}>
         <NetworkIcon />
         <SpeakerVolumeIcon />
         <MicrophoneVolumeIcon />
