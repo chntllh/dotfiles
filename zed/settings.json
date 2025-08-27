@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
   "ui_font_size": 14,
   "buffer_font_size": 12.0,
@@ -24,7 +24,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Ayu Dark"
   },
   "relative_line_numbers": true,
   "tab_bar": {
@@ -49,7 +49,7 @@
           "typeCheckingMode": "strict"
         },
         "python": {
-          "pythonPath": "/home/aqua/anaconda3/envs/cuda/bin/python"
+          "pythonPath": "/home/aqua/anaconda3/envs/hid/bin/python"
         }
       }
     },
@@ -90,6 +90,60 @@
         }
       }
     }
+    // "vtsls": {
+    //   "settings": {
+    //     // For JavaScript:
+    //     "javascript": {
+    //       "inlayHints": {
+    //         "parameterNames": {
+    //           "enabled": "all",
+    //           "suppressWhenArgumentMatchesName": false
+    //         },
+    //         "parameterTypes": {
+    //           "enabled": true
+    //         },
+    //         "variableTypes": {
+    //           "enabled": true,
+    //           "suppressWhenTypeMatchesName": true
+    //         },
+    //         "propertyDeclarationTypes": {
+    //           "enabled": true
+    //         },
+    //         "functionLikeReturnTypes": {
+    //           "enabled": true
+    //         },
+    //         "enumMemberValues": {
+    //           "enabled": true
+    //         }
+    //       }
+    //     },
+    //     // For TypeScript:
+    //     "typescript": {
+    //       "inlayHints": {
+    //         "parameterNames": {
+    //           "enabled": "all",
+    //           "suppressWhenArgumentMatchesName": false
+    //         },
+    //         "parameterTypes": {
+    //           "enabled": false
+    //         },
+    //         "variableTypes": {
+    //           "enabled": true,
+    //           "suppressWhenTypeMatchesName": true
+    //         },
+    //         "propertyDeclarationTypes": {
+    //           "enabled": true
+    //         },
+    //         "functionLikeReturnTypes": {
+    //           "enabled": true
+    //         },
+    //         "enumMemberValues": {
+    //           "enabled": true
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   },
   "languages": {
     "Python": {
@@ -108,7 +162,7 @@
           }
         }
       ],
-      "tab_size": 2
+      "tab_size": 4
     },
     "TypeScript": {
       "format_on_save": {
@@ -134,10 +188,14 @@
   },
   "jupyter": {
     "kernel_selections": {
-      "python": "cuda",
+      "python": "hid",
       "typescript": "deno",
       "javascript": "deno"
     }
+  },
+  "minimap": {
+    "display_in": "all_editors",
+    "current_line_highlight": "all"
   },
   "inlay_hints": {
     "enabled": true,
@@ -155,15 +213,49 @@
   "outline_panel": {
     "dock": "left"
   },
-  "assistant": {
+  "agent": {
     "button": false,
     "enabled": false,
-    "version": "2",
-    "provider": null
+    "dock": null
+  },
+  "language_models": {
+    "anthropic": {
+      "api_url": ""
+    },
+    "google": {
+      "api_url": ""
+    },
+    "ollama": {
+      "api_url": ""
+    },
+    "openai": {
+      "api_url": ""
+    },
+    "open_router": {
+      "api_url": ""
+    },
+    "lmstudio": {
+      "api_url": ""
+    },
+    "deepseek": {
+      "api_url": ""
+    },
+    "mistral": {
+      "api_url": ""
+    },
+    "bedrock": {
+      "endpoint_url": "",
+      "region": ""
+    },
+    "vercel": {
+      "api_url": ""
+    },
+    "zed.dev": {
+      "available_models": []
+    }
   },
   "features": {
-    "edit_prediction_provider": "none",
-    "copilot": false
+    "edit_prediction_provider": "none"
   },
   "chat_panel": {
     "button": "never"

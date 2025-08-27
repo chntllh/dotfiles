@@ -2,7 +2,7 @@ import { execAsync } from "astal";
 import {
   brightnessExternal,
   brightnessLaptop,
-  EXTERNAL_MONITOR_NUMBER,
+  // EXTERNAL_MONITOR_NUMBER,
 } from "./variables";
 
 export const initLaptopBrightness = async (): Promise<void> => {
@@ -28,8 +28,11 @@ export const initExternalBrightness = async (): Promise<void> => {
       "ddcutil",
       "getvcp",
       "10",
-      "-d",
-      EXTERNAL_MONITOR_NUMBER,
+      // "--bus=7",
+      "--mfg",
+      "ACR",
+      "--model",
+      "XV272U",
       "--terse",
     ]);
     const parts = res.trim().split(/\s+/);

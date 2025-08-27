@@ -9,4 +9,6 @@ export const brightnessExternal = Variable<number>(0);
 
 export const EXTERNAL_MONITOR_NUMBER = "1";
 
+export const EXTERNAL_MONITOR_BUS_NUMBER = 7;
+
 export const EXTERNAL_MONITOR = "HDMI-A-1";

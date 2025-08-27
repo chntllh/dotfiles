@@ -6,7 +6,6 @@ import { Slider } from "../../../components/Slider";
 import {
   brightnessExternal,
   brightnessLaptop,
-  EXTERNAL_MONITOR_NUMBER,
   EXTERNAL_MONITOR,
   LAPTOP_MONITOR,
 } from "../../../global/variables";
@@ -37,7 +36,7 @@ const BrightnessSlider = (): Gtk.Box => {
 const BrightnessSliderExternal = (): Gtk.Box => {
   let debounceTimer: GLib.Source;
 
-  const setBrightness: (percent: number) => void = (percent: number): void => {
+  const setBrightness = (percent: number): void => {
     if (percent < 0) percent = 0;
     else if (percent > 1) percent = 1;
 
@@ -48,11 +47,13 @@ const BrightnessSliderExternal = (): Gtk.Box => {
         "setvcp",
         "10",
         Math.floor(percent * 100).toString(),
-        "-d",
-        EXTERNAL_MONITOR_NUMBER,
+        `--mfg`,
+        "ACR",
+        "--model",
+        "XV272U",
       ])
         .then(() => brightnessExternal.set(percent))
-        .catch((error) => print(error));
+        .catch((error) => print(`Failed to set brightness: ${error}`));
     }, 100);
   };
 

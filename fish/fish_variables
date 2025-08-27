@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export NO_AT_BRIDGE:1
+SETUVAR --export --path PICO_SDK_PATH:/home/aqua/Development/Libs/pico\x2dsdk/
 SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr

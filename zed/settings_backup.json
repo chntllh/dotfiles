@@ -7,12 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
   "ui_font_size": 14,
   "buffer_font_size": 12.0,
-  "buffer_font_family": "CaskaydiaCove Nerd Font",
-  "buffer_font_weight": 400,
+  "buffer_font_family": "FiraCode Nerd Font",
+  // "buffer_font_weight": 300,
   "buffer_font_features": {
     "calt": true
   },
@@ -24,7 +24,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "Ayu Dark"
   },
   "relative_line_numbers": true,
   "tab_bar": {
@@ -36,6 +36,12 @@
     "show": "always"
   },
   "lsp": {
+    "clangd": {
+      "binary": {
+        "path": "/usr/bin/clangd",
+        "arguments": ["--function-arg-placeholders=0"]
+      }
+    },
     "pyright": {
       "settings": {
         "python.analysis": {
@@ -43,7 +49,7 @@
           "typeCheckingMode": "strict"
         },
         "python": {
-          "pythonPath": "/home/aqua/anaconda3/envs/cuda/bin/python"
+          "pythonPath": "/home/aqua/anaconda3/envs/hid/bin/python"
         }
       }
     },
@@ -56,7 +62,88 @@
           }
         }
       }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "diagnostics": {
+          "enable": true,
+          "experimental": {
+            "refreshOnChanges": true
+          }
+        },
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          },
+          "updateHints": {
+            "enable": true,
+            "debounce": 10
+          }
+        },
+        "rustfmt": {
+          "extraArgs": []
+        }
+      }
     }
+    // "vtsls": {
+    //   "settings": {
+    //     // For JavaScript:
+    //     "javascript": {
+    //       "inlayHints": {
+    //         "parameterNames": {
+    //           "enabled": "all",
+    //           "suppressWhenArgumentMatchesName": false
+    //         },
+    //         "parameterTypes": {
+    //           "enabled": true
+    //         },
+    //         "variableTypes": {
+    //           "enabled": true,
+    //           "suppressWhenTypeMatchesName": true
+    //         },
+    //         "propertyDeclarationTypes": {
+    //           "enabled": true
+    //         },
+    //         "functionLikeReturnTypes": {
+    //           "enabled": true
+    //         },
+    //         "enumMemberValues": {
+    //           "enabled": true
+    //         }
+    //       }
+    //     },
+    //     // For TypeScript:
+    //     "typescript": {
+    //       "inlayHints": {
+    //         "parameterNames": {
+    //           "enabled": "all",
+    //           "suppressWhenArgumentMatchesName": false
+    //         },
+    //         "parameterTypes": {
+    //           "enabled": false
+    //         },
+    //         "variableTypes": {
+    //           "enabled": true,
+    //           "suppressWhenTypeMatchesName": true
+    //         },
+    //         "propertyDeclarationTypes": {
+    //           "enabled": true
+    //         },
+    //         "functionLikeReturnTypes": {
+    //           "enabled": true
+    //         },
+    //         "enumMemberValues": {
+    //           "enabled": true
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   },
   "languages": {
     "Python": {
@@ -74,12 +161,34 @@
             "source.organizeImports.ruff": true
           }
         }
-      ]
+      ],
+      "tab_size": 4
+    },
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "tab_size": 2
+    },
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "tab_size": 2
+    },
+    "Rust": {
+      "tab_size": 4
     }
   },
   "jupyter": {
     "kernel_selections": {
-      "python": "cuda",
+      "python": "hid",
       "typescript": "deno",
       "javascript": "deno"
     }
@@ -100,14 +209,14 @@
   "outline_panel": {
     "dock": "left"
   },
-  "assistant": {
+  "agent": {
     "button": false,
     "enabled": false,
     "version": "2",
-    "provider": null
+    "dock": null
   },
   "features": {
-    "inline_completion_provider": "none",
+    "edit_prediction_provider": "none",
     "copilot": false
   },
   "chat_panel": {

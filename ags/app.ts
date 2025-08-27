@@ -1,7 +1,7 @@
 import { App, Astal, Gdk } from "astal/gtk4";
 import { Bar } from "./widget/bar/Bar";
 import { ControlCenter } from "./widget/control-center/ControlCenter";
-import { AppLauncher } from "./widget/app-launcher/AppLauncher";
+// import { AppLauncher } from "./widget/app-launcher/AppLauncher";
 import { execAsync, Gio, monitorFile, timeout } from "astal";
 import {
   initExternalBrightness,
@@ -62,7 +62,7 @@ const setDifference = <T>(a: Set<T>, b: Set<T>): Set<T> => {
 const main = (): void => {
   const windows = new Map<Gdk.Monitor, Astal.Window[]>();
 
-  AppLauncher();
+  // AppLauncher();
 
   for (const monitor of App.get_monitors()) {
     windows.set(monitor, setWindows(monitor));

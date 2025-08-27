@@ -1,0 +1,1 @@
+source "/home/aqua/.deno/env.fish"

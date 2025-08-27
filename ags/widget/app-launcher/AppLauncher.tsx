@@ -67,11 +67,14 @@ export const AppLauncher = (): Gtk.Window =>
           <box vertical spacing={4}>
             {bind(textBox, "text").as((text) =>
               apps
-                // .fuzzy_query(text)
-                .exact_query(text)
+                .fuzzy_query(text)
+                // .exact_query(text)
                 // .filter((app) => !appFilter.includes(app.executable))
                 .map((app: AstalApps.Application) => AppButton(app)),
             )}
+            {/* {bind(textBox, "text").as((text) =>
+              apps.exact_query(text).map((app) => AppButton(app)),
+            )} */}
           </box>
         </Gtk.ScrolledWindow>
       </box>
