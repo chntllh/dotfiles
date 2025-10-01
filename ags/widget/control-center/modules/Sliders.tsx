@@ -47,10 +47,11 @@ const BrightnessSliderExternal = (): Gtk.Box => {
         "setvcp",
         "10",
         Math.floor(percent * 100).toString(),
-        `--mfg`,
-        "ACR",
-        "--model",
-        "XV272U",
+        // `--mfg`,
+        // "ACR",
+        // "--model",
+        // "XV272U",
+        "--bus=7"
       ])
         .then(() => brightnessExternal.set(percent))
         .catch((error) => print(`Failed to set brightness: ${error}`));

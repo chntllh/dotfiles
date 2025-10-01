@@ -105,7 +105,7 @@ window-rule {
 }
 
 binds {
-    Super+B { spawn "firefox"; }
+    Super+B { spawn "brave"; }
     Super+C { spawn "code" "--ozone-platform-hint=auto" "--enable-features=WaylandWindowDecoration"; }
     Super+N { spawn "swaync-client" "-t" "-sw"; }
     Super+T { spawn "alacritty"; }

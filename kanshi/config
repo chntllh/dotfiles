@@ -1,0 +1,24 @@
+output "HKM HDMI 0000000000001" {
+  mode 3440x1440@100
+  position 0,0
+  scale 1
+  alias $HOME_1
+}
+
+output "Chimei Innolux Corporation 0x1522 Unknown" {
+  mode 1920x1080@120.02
+  position 0,0
+  scale 1
+  alias $INTERNAL
+}
+
+profile home_1 {
+  output $INTERNAL disable
+  output $HOME_1 enable
+  exec ~/.local/bin/hypr-workspace-assign external
+}
+
+profile laptop {
+  output $INTERNAL enable
+  exec ~/.local/bin/hypr-workspace-assign internal
+}

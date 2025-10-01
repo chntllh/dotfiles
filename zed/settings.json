@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Catppuccin Mocha",
+  "icon_theme": "Material Icon Theme",
   "base_keymap": "VSCode",
   "ui_font_size": 14,
   "buffer_font_size": 12.0,
@@ -90,60 +90,6 @@
         }
       }
     }
-    // "vtsls": {
-    //   "settings": {
-    //     // For JavaScript:
-    //     "javascript": {
-    //       "inlayHints": {
-    //         "parameterNames": {
-    //           "enabled": "all",
-    //           "suppressWhenArgumentMatchesName": false
-    //         },
-    //         "parameterTypes": {
-    //           "enabled": true
-    //         },
-    //         "variableTypes": {
-    //           "enabled": true,
-    //           "suppressWhenTypeMatchesName": true
-    //         },
-    //         "propertyDeclarationTypes": {
-    //           "enabled": true
-    //         },
-    //         "functionLikeReturnTypes": {
-    //           "enabled": true
-    //         },
-    //         "enumMemberValues": {
-    //           "enabled": true
-    //         }
-    //       }
-    //     },
-    //     // For TypeScript:
-    //     "typescript": {
-    //       "inlayHints": {
-    //         "parameterNames": {
-    //           "enabled": "all",
-    //           "suppressWhenArgumentMatchesName": false
-    //         },
-    //         "parameterTypes": {
-    //           "enabled": false
-    //         },
-    //         "variableTypes": {
-    //           "enabled": true,
-    //           "suppressWhenTypeMatchesName": true
-    //         },
-    //         "propertyDeclarationTypes": {
-    //           "enabled": true
-    //         },
-    //         "functionLikeReturnTypes": {
-    //           "enabled": true
-    //         },
-    //         "enumMemberValues": {
-    //           "enabled": true
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   },
   "languages": {
     "Python": {
@@ -184,13 +130,6 @@
     },
     "Rust": {
       "tab_size": 4
-    }
-  },
-  "jupyter": {
-    "kernel_selections": {
-      "python": "hid",
-      "typescript": "deno",
-      "javascript": "deno"
     }
   },
   "minimap": {
@@ -266,5 +205,6 @@
   "telemetry": {
     "diagnostics": false,
     "metrics": false
-  }
+  },
+  "disable_ai": true
 }

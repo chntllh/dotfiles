@@ -28,12 +28,12 @@ export const initExternalBrightness = async (): Promise<void> => {
       "ddcutil",
       "getvcp",
       "10",
-      // "--bus=7",
-      "--mfg",
-      "ACR",
-      "--model",
-      "XV272U",
-      "--terse",
+      "--bus=7",
+      // "--mfg",
+      // "ACR",
+      // "--model",
+      // "XV272U",
+      // "--terse",
     ]);
     const parts = res.trim().split(/\s+/);
 
