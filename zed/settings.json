@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "vim_mode": false,
   "icon_theme": "Material Icon Theme",
   "base_keymap": "VSCode",
   "ui_font_size": 14,
@@ -23,8 +24,8 @@
   },
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "Ayu Dark"
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
   },
   "relative_line_numbers": true,
   "tab_bar": {
@@ -89,47 +90,6 @@
           "extraArgs": []
         }
       }
-    }
-  },
-  "languages": {
-    "Python": {
-      "language_servers": ["ruff"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        },
-        {
-          "code_actions": {
-            // "source.fixAll.ruff": true,
-            "source.organizeImports.ruff": true
-          }
-        }
-      ],
-      "tab_size": 4
-    },
-    "TypeScript": {
-      "format_on_save": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "tab_size": 2
-    },
-    "TSX": {
-      "format_on_save": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "tab_size": 2
-    },
-    "Rust": {
-      "tab_size": 4
     }
   },
   "minimap": {

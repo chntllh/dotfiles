@@ -1,0 +1,63 @@
+[[profile]]
+name = "laptop"
+exec = ["~/.local/bin/hypr-workspace-assign internal"]
+  [[profile.output]]
+  search = ["n=eDP-1", "v=Chimei Innolux Corporation", "m=0x1522"]
+  enable = true
+  mode = "1920x1080@120.02Hz"    # permissive: shikane will generate variants
+  position = "0,0"
+  scale = 1.00
+  transform = "normal"
+  adaptive_sync = true
+
+  [[profile.output]]
+  search = ["n=HDMI-A-1", "s=0000000000001", "v=HKM"]
+  enable = false
+
+  [[profile.output]]
+  search = ["n=DP-1", "v=Audio Processing Technology  Ltd", "m=TYPEC"]
+  enable = false
+
+
+[[profile]]
+name = "external_landscape"
+# run workspace assign and fallback disabler
+exec = ["~/.local/bin/hypr-workspace-assign external", "~/.local/bin/shikane-external-fallback"]
+  [[profile.output]]
+  search = ["n=eDP-1", "v=Chimei Innolux Corporation", "m=0x1522"]
+  enable = false
+
+  [[profile.output]]
+  search = ["s=0000000000001", "n=HDMI-A-1", "v=HKM", "m=HDMI"]
+  enable = true
+  mode = "3440x1440@100.00"    # permissive
+  position = "0,0"
+  scale = 1.0
+  transform = "normal"
+  adaptive_sync = true
+
+  [[profile.output]]
+  search = ["n=DP-1", "v=Audio Processing Technology  Ltd", "m=TYPEC"]
+  enable = true
+  mode = "1920x1080"    # permissive
+  position = "760,1440"
+  scale = 1.00
+  transform = "normal"
+  adaptive_sync = true
+
+
+[[profile]]
+name = "external_only"
+exec = ["~/.local/bin/hypr-workspace-assign external"]
+  [[profile.output]]
+  search = ["n=eDP-1", "v=Chimei Innolux Corporation", "m=0x1522"]
+  enable = false
+
+  [[profile.output]]
+  search = ["s=0000000000001", "n=HDMI-A-1", "v=HKM", "m=HDMI"]
+  enable = true
+  mode = "3440x1440@100.00"
+  position = "0,0"
+  scale = 1.0
+  transform = "normal"
+  adaptive_sync = true

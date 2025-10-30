@@ -9,5 +9,6 @@ ln -s ~/dotfiles/swaync ~/.config
 ln -s ~/dotfiles/waybar ~/.config
 ln -s ~/dotfiles/wallpapers ~/.config
 ln -s ~/dotfiles/wofi ~/.config
+ln -s ~/dotfiles/shikane ~/.config
 ln -s ~/dotfiles/code-flags.conf ~/.config
 ln -s ~/dotfiles/mimeapps.list ~/.config
